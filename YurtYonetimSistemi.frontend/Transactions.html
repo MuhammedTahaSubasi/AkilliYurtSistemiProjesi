@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>İşlemler</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="sidebar">
+    <h2>Yurt Paneli</h2>
+    <ul>
+      <li><a href="Dashboard.html">Dashboard</a></li>
+      <li><a href="Students.html">Öğrenciler</a></li>
+      <li><a href="Transactions.html" class="active">İşlemler</a></li>
+      <li><a href="facilities.html" class="active">Ortak Alanlar</a></li>
+      <li><a href="Settings.html">Ayarlar</a></li>
+    </ul>
+  </div>
+
+  <div class="main-content">
+    <div class="navbar">
+      <h1>İşlem Geçmişi</h1>
+      <button>Çıkış Yap</button>
+    </div>
+
+    <div class="content">
+       <!-- 1. Yurt Ödemeleri -->
+<h2>💰 Ödeme İşlemleri</h2>
+<table class="student-table">
+  <thead>
+    <tr>
+      <th>Tarih</th>
+      <th>Öğrenci</th>
+      <th>İşlem</th>
+      <th>Tutar</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>2025-03-27</td>
+      <td>Ahmet Yılmaz</td>
+      <td>Yurt Ücreti Ödemesi</td>
+      <td>1200₺</td>
+    </tr>
+    <tr>
+      <td>2025-03-20</td>
+      <td>Ayşe Demir</td>
+      <td>Yemekhane Katılım Ücreti</td>
+      <td>150₺</td>
+    </tr>
+  </tbody>
+</table>
+
+      
+        <!-- 2. Bakım ve Onarım -->
+        <h2>🔧 Bakım ve Onarım Talepleri</h2>
+        <table class="student-table">
+          <thead>
+            <tr>
+              <th>Tarih</th>
+              <th>Öğrenci</th>
+              <th>Talep</th>
+              <th>Durum</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>2025-03-25</td>
+              <td>Ayşe Demir</td>
+              <td>2A Tuvalet Arızası</td>
+              <td>Beklemede</td>
+            </tr>
+            <tr>
+              <td>2025-03-26</td>
+              <td>Yurt Görevlisi</td>
+              <td>Tuvalet Onarımı</td>
+              <td>Tamamlandı</td>
+            </tr>
+          </tbody>
+        </table>
+      
+        <!-- 3. Sosyal Etkinlik -->
+        <h2>🎉 Etkinlik Katılımı</h2>
+        <table class="student-table">
+          <thead>
+            <tr>
+              <th>Etkinlik</th>
+              <th>Tarih</th>
+              <th>Katılan Kişi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Masa Tenisi Turnuvası</td>
+              <td>2025-03-24</td>
+              <td>12</td>
+            </tr>
+            <tr>
+              <td>Girişimcilik Semineri</td>
+              <td>2025-03-20</td>
+              <td>26</td>
+            </tr>
+          </tbody>
+        </table>
+      
+        <!-- 4. Giriş Çıkış İşlemleri -->
+        <h2>🚪 Giriş / Çıkış İşlemleri</h2>
+        <table class="student-table">
+          <thead>
+            <tr>
+              <th>Tarih</th>
+              <th>Öğrenci</th>
+              <th>Giriş Saati</th>
+              <th>Çıkış Saati</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>2025-03-27</td>
+              <td>Ahmet Yılmaz</td>
+              <td>08:15</td>
+              <td>17:45</td>
+            </tr>
+            <tr>
+              <td>2025-03-27</td>
+              <td>Ayşe Demir</td>
+              <td>09:00</td>
+              <td>15:20</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

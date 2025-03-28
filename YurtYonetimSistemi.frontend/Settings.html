@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ayarlar</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="sidebar">
+    <h2>Yurt Paneli</h2>
+    <ul>
+      <li><a href="Dashboard.html">Dashboard</a></li>
+      <li><a href="Students.html">Öğrenciler</a></li>
+      <li><a href="Transactions.html">İşlemler</a></li>
+      <li><a href="facilities.html" class="active">Ortak Alanlar</a></li>
+      <li><a href="Settings.html" class="active">Ayarlar</a></li>
+    </ul>
+  </div>
+
+  <div class="main-content">
+    <div class="navbar">
+      <h1>Ayarlar</h1>
+      <button>Çıkış Yap</button>
+    </div>
+
+    <div class="content">
+      <!-- Yönetici Bilgileri -->
+      <h2>🧑‍💼 Yönetici Bilgileri</h2>
+      <form class="settings-form">
+        <label>Ad Soyad</label>
+        <input type="text" value="Muhammed Taha Subaşı" disabled />
+
+        <label>E-Posta</label>
+        <input type="email" value="mtahasubasii@gmail.com" disabled />
+      </form>
+
+      <!-- Şifre Değiştir -->
+      <h2>🔐 Şifre Değiştir</h2>
+      <form class="settings-form">
+        <label>Mevcut Şifre</label>
+        <input type="password" />
+
+        <label>Yeni Şifre</label>
+        <input type="password" />
+
+        <label>Yeni Şifre (Tekrar)</label>
+        <input type="password" />
+
+        <button type="submit">Şifreyi Güncelle</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

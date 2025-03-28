@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ortak Alanlar</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="sidebar">
+    <h2>Yurt Paneli</h2>
+    <ul>
+      <li><a href="Dashboard.html">Dashboard</a></li>
+      <li><a href="Students.html">Öğrenciler</a></li>
+      <li><a href="Transactions.html">İşlemler</a></li>
+      <li><a href="facilities.html" class="active">Ortak Alanlar</a></li>
+      <li><a href="Settings.html">Ayarlar</a></li>
+    </ul>
+  </div>
+
+  <div class="main-content">
+    <div class="navbar">
+      <h1>Ortak Alan Kullanımı</h1>
+      <button>Çıkış Yap</button>
+    </div>
+
+    <div class="content">
+
+      <!-- Çamaşırhane Planı -->
+      <h2>🧺 Çamaşırhane Kullanım Planı</h2>
+      <table class="student-table">
+        <thead>
+          <tr>
+            <th>Gün</th>
+            <th>Saat</th>
+            <th>Oda</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Pazartesi</td><td>09:00 - 10:00</td><td>2A</td></tr>
+          <tr><td>Salı</td><td>10:00 - 11:00</td><td>3B</td></tr>
+          <tr><td>Çarşamba</td><td>14:00 - 15:00</td><td>1C</td></tr>
+        </tbody>
+      </table>
+
+      <!-- Yemekhane Menüsü -->
+      <h2>🍽️ Yemekhane Haftalık Menüsü</h2>
+      <table class="student-table">
+        <thead>
+          <tr>
+            <th>Gün</th>
+            <th>Öğle Yemeği</th>
+            <th>Akşam Yemeği</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Pazartesi</td><td>Kuru Fasulye + Pilav</td><td>Tavuk Sote</td></tr>
+          <tr><td>Salı</td><td>Mercimek Çorbası + Makarna</td><td>Köfte</td></tr>
+          <tr><td>Çarşamba</td><td>Izgara Tavuk</td><td>Etli Nohut</td></tr>
+        </tbody>
+      </table>
+
+      <!-- Etüt Odası Kullanımı -->
+      <h2>📚 Etüt Odası Kullanımı</h2>
+      <table class="student-table">
+        <thead>
+          <tr>
+            <th>Tarih</th>
+            <th>Saat</th>
+            <th>Oda</th>
+            <th>Rezervasyon Yapan</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>2025-03-28</td><td>18:00 - 19:00</td><td>Etüt-1</td><td>Ayşe Demir</td></tr>
+          <tr><td>2025-03-28</td><td>19:00 - 20:00</td><td>Etüt-2</td><td>Ahmet Yılmaz</td></tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
