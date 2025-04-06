@@ -27,7 +27,7 @@ namespace YurtYonetimSistemi.API.Controllers
 
         // GET: api/Kullanici/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Kullanici>> GetKullanici(int id)
+        public async Task<ActionResult<Kullanici>> GetKullanici(Guid id)
         {
             var kullanici = await _context.Kullanicilar.Include(k => k.Rol)
                 .FirstOrDefaultAsync(k => k.KullaniciID == id);
@@ -44,16 +44,29 @@ namespace YurtYonetimSistemi.API.Controllers
         [HttpPost]
         public async Task<ActionResult<Kullanici>> PostKullanici(Kullanici kullanici)
         {
-            _context.Kullanicilar.Add(kullanici);
+            // 1. İlgili odayı çek
+            var oda = await _context.Odalar
+                .Include(o => o.Kullanicilar)
+                .FirstOrDefaultAsync(o => o.OdaID == kullanici.OdaID);
+
+            // 2. Oda doluysa kaydı reddet
+            if (oda != null && oda.Kullanicilar.Count >= oda.Kapasite)
+            {
+                return BadRequest("Bu oda şu anda dolu. Lütfen başka bir oda seçin.");
+            }
+
+            // 3. Şifreyi hashle ve kullanıcıyı kaydet
             kullanici.Sifre = BCrypt.Net.BCrypt.HashPassword(kullanici.Sifre);
+            _context.Kullanicilar.Add(kullanici);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction(nameof(GetKullanici), new { id = kullanici.KullaniciID }, kullanici);
         }
 
+
         // PUT: api/Kullanici/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutKullanici(int id, Kullanici kullanici)
+        public async Task<IActionResult> PutKullanici(Guid id, Kullanici kullanici)
         {
             if (id != kullanici.KullaniciID)
             {
@@ -83,7 +96,7 @@ namespace YurtYonetimSistemi.API.Controllers
 
         // DELETE: api/Kullanici/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteKullanici(int id)
+        public async Task<IActionResult> DeleteKullanici(Guid id)
         {
             var kullanici = await _context.Kullanicilar.FindAsync(id);
             if (kullanici == null)
@@ -97,7 +110,7 @@ namespace YurtYonetimSistemi.API.Controllers
             return NoContent();
         }
 
-        private bool KullaniciExists(int id)
+        private bool KullaniciExists(Guid id)
         {
             return _context.Kullanicilar.Any(e => e.KullaniciID == id);
         }

@@ -94,7 +94,7 @@ namespace YurtYonetimSistemi.API.Controllers
           }
             // Öğrenci aynı ankete daha önce cevap vermiş mi kontrolü
             var alreadyExists = await _context.AnketCevaplar
-      .AnyAsync(a => a.AnketID == anketCevap.AnketID && a.OgrenciID == anketCevap.OgrenciID);
+      .AnyAsync(a => a.AnketID == anketCevap.AnketID && a.KullaniciID == anketCevap.KullaniciID);
 
             if (alreadyExists)
             {

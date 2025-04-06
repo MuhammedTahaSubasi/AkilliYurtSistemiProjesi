@@ -31,7 +31,7 @@ namespace YurtYonetimSistemi.API.Controllers
               return NotFound();
           }
             return await _context.Odalar
-                .Include(o => o.Ogrenciler)
+                .Include(o => o.Kullanicilar)
                 .ToListAsync();
         }
 

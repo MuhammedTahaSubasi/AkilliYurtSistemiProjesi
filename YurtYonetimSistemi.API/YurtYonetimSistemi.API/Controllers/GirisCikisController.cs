@@ -32,7 +32,7 @@ namespace YurtYonetimSistemi.API.Controllers
                 return NotFound();
             }
             return await _context.GirisCikislar
-                .Include(gc => gc.Ogrenci) // Öğrenci bilgisiyle birlikte getir
+                .Include(gc => gc.Kullanici) // kullanıcı bilgisiyle birlikte getir
                 .ToListAsync();
         }
 
@@ -45,7 +45,7 @@ namespace YurtYonetimSistemi.API.Controllers
                 return NotFound();
             }
             var girisCikis = await _context.GirisCikislar
-                .Include(gc => gc.Ogrenci) // Öğrenci bilgisiyle birlikte getir
+                .Include(gc => gc.Kullanici) // kullanıcı bilgisiyle birlikte getir
                 .FirstOrDefaultAsync(gc => gc.GirisCikisID == id);
 
             if (girisCikis == null)
@@ -97,9 +97,9 @@ namespace YurtYonetimSistemi.API.Controllers
                 return Problem("Entity set 'AppDbContext.GirisCikislar'  is null.");
             }
 
-            // Öğrencinin son kaydını bul
+            // kullanıcının son kaydını bul
             var sonKayit = await _context.GirisCikislar
-                .Where(g => g.OgrenciID == girisCikis.OgrenciID)
+                .Where(g => g.KullaniciID == girisCikis.KullaniciID)
                 .OrderByDescending(g => g.ZamanDamgasi)
                 .FirstOrDefaultAsync();
 

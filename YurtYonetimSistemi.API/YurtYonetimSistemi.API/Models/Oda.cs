@@ -24,9 +24,8 @@ namespace YurtYonetimSistemi.API.Models
         [ForeignKey("SinifID")]
         public Sinif? Sinif { get; set; }
 
-        // Oda’da kalan öğrenciler
-        public ICollection<Ogrenci>? Ogrenciler { get; set; }
-
+        // Oda’da kalan kullanıcılar
+        public ICollection<Kullanici>? Kullanicilar { get; set; }
 
         //kapasite kontrol
         [NotMapped]
@@ -34,10 +33,11 @@ namespace YurtYonetimSistemi.API.Models
         {
             get
             {
-                if (Ogrenciler == null || Kapasite == 0)
+                if (Kullanicilar == null || Kapasite == 0)
                     return "Boş";
 
-                return Ogrenciler.Count >= Kapasite ? "Dolu" : "Boş";
+                return Kullanicilar.Count >= Kapasite ? "Dolu" : "Boş";
+
             }
         }
 

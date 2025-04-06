@@ -13,7 +13,6 @@ namespace YurtYonetimSistemi.API.Models
         public DbSet<Rol> Roller { get; set; }
         public DbSet<Yetki> Yetkiler { get; set; }
         public DbSet<RolYetki> RolYetkiler { get; set; }
-        public DbSet<Ogrenci> Ogrenciler { get; set; }
         public DbSet<Sinif> Siniflar { get; set; }
         public DbSet<Oda> Odalar { get; set; }
         public DbSet<BakimTalep> BakimTalepleri { get; set; }

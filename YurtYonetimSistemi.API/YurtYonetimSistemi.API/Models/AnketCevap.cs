@@ -16,10 +16,10 @@ namespace YurtYonetimSistemi.API.Models
         public Anket? Anket { get; set; }
 
         [Required]
-        public Guid OgrenciID { get; set; }
+        public Guid KullaniciID { get; set; }
 
-        [ForeignKey("OgrenciID")]
-        public Ogrenci? Ogrenci { get; set; }
+        [ForeignKey("KullaniciID")]
+        public Kullanici? Kullanici { get; set; }
 
         [Range(1, 5)]
         public int Puan { get; set; }

@@ -17,10 +17,11 @@ namespace YurtYonetimSistemi.API.Models
 
         public bool TalepDurumu { get; set; } = false;
 
-        // Öğrenci ile ilişki
-        public Guid OgrenciID { get; set; }
+        // Kullanıcı ile ilişki
+        public Guid KullaniciID { get; set; }
 
-        [ForeignKey("OgrenciID")]
-        public Ogrenci? Ogrenci { get; set; }
+        [ForeignKey("KullaniciID")]
+        public Kullanici? Kullanici { get; set; }
+
     }
 }

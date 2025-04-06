@@ -13,9 +13,9 @@ namespace YurtYonetimSistemi.API.Models
         public DateTime ZamanDamgasi { get; set; } = DateTime.Now;
 
         // İlişki
-        public Guid OgrenciID { get; set; }
+        public Guid KullaniciID { get; set; }
 
-        [ForeignKey("OgrenciID")]
-        public Ogrenci? Ogrenci { get; set; }
+        [ForeignKey("KullaniciID")]
+        public Kullanici? Kullanici { get; set; }
     }
 }

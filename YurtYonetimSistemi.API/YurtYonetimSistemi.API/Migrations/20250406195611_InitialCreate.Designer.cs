@@ -12,8 +12,8 @@ using YurtYonetimSistemi.API.Models;
 namespace YurtYonetimSistemi.API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250401191605_OgrenciOdaSinifIliski")]
-    partial class OgrenciOdaSinifIliski
+    [Migration("20250406195611_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,13 +24,104 @@ namespace YurtYonetimSistemi.API.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("YurtYonetimSistemi.API.Models.Kullanici", b =>
+            modelBuilder.Entity("YurtYonetimSistemi.API.Models.Anket", b =>
                 {
-                    b.Property<int>("KullaniciID")
+                    b.Property<Guid>("AnketID")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("OlusturmaTarihi")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Soru")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("AnketID");
+
+                    b.ToTable("Anketler");
+                });
+
+            modelBuilder.Entity("YurtYonetimSistemi.API.Models.AnketCevap", b =>
+                {
+                    b.Property<Guid>("CevapID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("AnketID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("KullaniciID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Puan")
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("KullaniciID"), 1L, 1);
+                    b.HasKey("CevapID");
+
+                    b.HasIndex("AnketID");
+
+                    b.HasIndex("KullaniciID");
+
+                    b.ToTable("AnketCevaplar");
+                });
+
+            modelBuilder.Entity("YurtYonetimSistemi.API.Models.BakimTalep", b =>
+                {
+                    b.Property<Guid>("TalepID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Aciklama")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Baslik")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("KullaniciID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("TalepDurumu")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("TalepTarihi")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("TalepID");
+
+                    b.HasIndex("KullaniciID");
+
+                    b.ToTable("BakimTalepleri");
+                });
+
+            modelBuilder.Entity("YurtYonetimSistemi.API.Models.GirisCikis", b =>
+                {
+                    b.Property<Guid>("GirisCikisID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("GirisMi")
+                        .HasColumnType("bit");
+
+                    b.Property<Guid>("KullaniciID")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("ZamanDamgasi")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("GirisCikisID");
+
+                    b.HasIndex("KullaniciID");
+
+                    b.ToTable("GirisCikislar");
+                });
+
+            modelBuilder.Entity("YurtYonetimSistemi.API.Models.Kullanici", b =>
+                {
+                    b.Property<Guid>("KullaniciID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Ad")
                         .IsRequired()
@@ -40,6 +131,12 @@ namespace YurtYonetimSistemi.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime?>("KayitTarihi")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("OdaID")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid>("RolID")
                         .HasColumnType("uniqueidentifier");
 
@@ -47,13 +144,24 @@ namespace YurtYonetimSistemi.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid?>("SinifID")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Soyad")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TcNo")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("KullaniciID");
 
+                    b.HasIndex("OdaID");
+
                     b.HasIndex("RolID");
+
+                    b.HasIndex("SinifID");
 
                     b.ToTable("Kullanicilar");
                 });
@@ -63,10 +171,6 @@ namespace YurtYonetimSistemi.API.Migrations
                     b.Property<Guid>("OdaID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Durum")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Kapasite")
                         .HasColumnType("int");
@@ -86,46 +190,6 @@ namespace YurtYonetimSistemi.API.Migrations
                     b.HasIndex("SinifID");
 
                     b.ToTable("Odalar");
-                });
-
-            modelBuilder.Entity("YurtYonetimSistemi.API.Models.Ogrenci", b =>
-                {
-                    b.Property<Guid>("OgrenciID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Ad")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("KayitTarihi")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid?>("OdaID")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("SinifID")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Soyad")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TcNo")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("OgrenciID");
-
-                    b.HasIndex("OdaID");
-
-                    b.HasIndex("SinifID");
-
-                    b.ToTable("Ogrenciler");
                 });
 
             modelBuilder.Entity("YurtYonetimSistemi.API.Models.Rol", b =>
@@ -200,15 +264,68 @@ namespace YurtYonetimSistemi.API.Migrations
                     b.ToTable("Yetkiler");
                 });
 
+            modelBuilder.Entity("YurtYonetimSistemi.API.Models.AnketCevap", b =>
+                {
+                    b.HasOne("YurtYonetimSistemi.API.Models.Anket", "Anket")
+                        .WithMany("Cevaplar")
+                        .HasForeignKey("AnketID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("YurtYonetimSistemi.API.Models.Kullanici", "Kullanici")
+                        .WithMany()
+                        .HasForeignKey("KullaniciID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Anket");
+
+                    b.Navigation("Kullanici");
+                });
+
+            modelBuilder.Entity("YurtYonetimSistemi.API.Models.BakimTalep", b =>
+                {
+                    b.HasOne("YurtYonetimSistemi.API.Models.Kullanici", "Kullanici")
+                        .WithMany()
+                        .HasForeignKey("KullaniciID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Kullanici");
+                });
+
+            modelBuilder.Entity("YurtYonetimSistemi.API.Models.GirisCikis", b =>
+                {
+                    b.HasOne("YurtYonetimSistemi.API.Models.Kullanici", "Kullanici")
+                        .WithMany()
+                        .HasForeignKey("KullaniciID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Kullanici");
+                });
+
             modelBuilder.Entity("YurtYonetimSistemi.API.Models.Kullanici", b =>
                 {
+                    b.HasOne("YurtYonetimSistemi.API.Models.Oda", "Oda")
+                        .WithMany("Kullanicilar")
+                        .HasForeignKey("OdaID");
+
                     b.HasOne("YurtYonetimSistemi.API.Models.Rol", "Rol")
                         .WithMany("Kullanicilar")
                         .HasForeignKey("RolID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("YurtYonetimSistemi.API.Models.Sinif", "Sinif")
+                        .WithMany("Kullanicilar")
+                        .HasForeignKey("SinifID");
+
+                    b.Navigation("Oda");
+
                     b.Navigation("Rol");
+
+                    b.Navigation("Sinif");
                 });
 
             modelBuilder.Entity("YurtYonetimSistemi.API.Models.Oda", b =>
@@ -216,21 +333,6 @@ namespace YurtYonetimSistemi.API.Migrations
                     b.HasOne("YurtYonetimSistemi.API.Models.Sinif", "Sinif")
                         .WithMany()
                         .HasForeignKey("SinifID");
-
-                    b.Navigation("Sinif");
-                });
-
-            modelBuilder.Entity("YurtYonetimSistemi.API.Models.Ogrenci", b =>
-                {
-                    b.HasOne("YurtYonetimSistemi.API.Models.Oda", "Oda")
-                        .WithMany("Ogrenciler")
-                        .HasForeignKey("OdaID");
-
-                    b.HasOne("YurtYonetimSistemi.API.Models.Sinif", "Sinif")
-                        .WithMany("Ogrenciler")
-                        .HasForeignKey("SinifID");
-
-                    b.Navigation("Oda");
 
                     b.Navigation("Sinif");
                 });
@@ -254,9 +356,14 @@ namespace YurtYonetimSistemi.API.Migrations
                     b.Navigation("Yetki");
                 });
 
+            modelBuilder.Entity("YurtYonetimSistemi.API.Models.Anket", b =>
+                {
+                    b.Navigation("Cevaplar");
+                });
+
             modelBuilder.Entity("YurtYonetimSistemi.API.Models.Oda", b =>
                 {
-                    b.Navigation("Ogrenciler");
+                    b.Navigation("Kullanicilar");
                 });
 
             modelBuilder.Entity("YurtYonetimSistemi.API.Models.Rol", b =>
@@ -268,7 +375,7 @@ namespace YurtYonetimSistemi.API.Migrations
 
             modelBuilder.Entity("YurtYonetimSistemi.API.Models.Sinif", b =>
                 {
-                    b.Navigation("Ogrenciler");
+                    b.Navigation("Kullanicilar");
                 });
 
             modelBuilder.Entity("YurtYonetimSistemi.API.Models.Yetki", b =>

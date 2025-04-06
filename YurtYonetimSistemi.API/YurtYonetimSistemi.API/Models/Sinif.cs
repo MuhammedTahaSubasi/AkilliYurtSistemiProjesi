@@ -14,6 +14,7 @@ namespace YurtYonetimSistemi.API.Models
 
         public int Kapasite { get; set; }
 
-        public ICollection<Ogrenci>? Ogrenciler { get; set; }
+        public ICollection<Kullanici>? Kullanicilar { get; set; }
+
     }
 }
