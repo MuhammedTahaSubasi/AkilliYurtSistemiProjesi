@@ -42,25 +42,25 @@ namespace YurtYonetimSistemi.API.Controllers
             });
         }
 
-        [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody] RegisterDto dto)
-        {
-            var hashedPassword = BCrypt.Net.BCrypt.HashPassword(dto.Sifre);
+        //[HttpPost("register")]
+        //public async Task<IActionResult> Register([FromBody] RegisterDto dto)
+        //{
+        //    var hashedPassword = BCrypt.Net.BCrypt.HashPassword(dto.Sifre);
 
-            var kullanici = new Kullanici
-            {
-                Ad = dto.Ad,
-                Soyad = dto.Soyad,
-                Email = dto.Email,
-                Sifre = hashedPassword,
-                RolID = dto.RolID
-            };
+        //    var kullanici = new Kullanici
+        //    {
+        //        Ad = dto.Ad,
+        //        Soyad = dto.Soyad,
+        //        Email = dto.Email,
+        //        Sifre = hashedPassword,
+        //        RolID = dto.RolID
+        //    };
 
-            _context.Kullanicilar.Add(kullanici);
-            await _context.SaveChangesAsync();
+        //    _context.Kullanicilar.Add(kullanici);
+        //    await _context.SaveChangesAsync();
 
-            return Ok(new { message = "Kayıt başarılı" });
-        }
+        //    return Ok(new { message = "Kayıt başarılı" });
+        //}
 
     }
 }

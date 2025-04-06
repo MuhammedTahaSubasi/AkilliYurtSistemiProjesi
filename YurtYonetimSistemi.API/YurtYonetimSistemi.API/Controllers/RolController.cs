@@ -6,9 +6,12 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using YurtYonetimSistemi.API.Models;
+using Microsoft.AspNetCore.Authorization;
+
 
 namespace YurtYonetimSistemi.API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class RolController : ControllerBase

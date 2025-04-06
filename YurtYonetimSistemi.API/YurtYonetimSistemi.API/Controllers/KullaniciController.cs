@@ -2,9 +2,11 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using YurtYonetimSistemi.API.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace YurtYonetimSistemi.API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class KullaniciController : ControllerBase
@@ -43,6 +45,7 @@ namespace YurtYonetimSistemi.API.Controllers
         public async Task<ActionResult<Kullanici>> PostKullanici(Kullanici kullanici)
         {
             _context.Kullanicilar.Add(kullanici);
+            kullanici.Sifre = BCrypt.Net.BCrypt.HashPassword(kullanici.Sifre);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction(nameof(GetKullanici), new { id = kullanici.KullaniciID }, kullanici);

@@ -248,3 +248,4 @@ C:\Users\hafiz\source\repos\AkilliYurtSistemiProjesi\YurtYonetimSistemi.API\Yurt
 C:\Users\hafiz\source\repos\AkilliYurtSistemiProjesi\YurtYonetimSistemi.API\YurtYonetimSistemi.API\bin\Debug\net6.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\hafiz\source\repos\AkilliYurtSistemiProjesi\YurtYonetimSistemi.API\YurtYonetimSistemi.API\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.Pkcs.dll
 C:\Users\hafiz\source\repos\AkilliYurtSistemiProjesi\YurtYonetimSistemi.API\YurtYonetimSistemi.API\bin\Debug\net6.0\BCrypt.Net-Next.dll
+C:\Users\hafiz\source\repos\AkilliYurtSistemiProjesi\YurtYonetimSistemi.API\YurtYonetimSistemi.API\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
