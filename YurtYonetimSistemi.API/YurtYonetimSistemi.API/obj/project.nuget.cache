@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "hr4vruWby7OIKylCq6cbdquNdr7wXZW3BovN90M/IXNMH4JoCrf/nr1Fn6bEdS3ccmBLFD35qbJ9sIinrVnChQ==",
+  "dgSpecHash": "wDGKAut+ilronB3DH5G7OX4wuvZwen3uobu9l6HR10b2rrazk1ksE27QUMICJoj4tV4G1WonVl/xJwgUtW7c1g==",
   "success": true,
   "projectFilePath": "C:\\Users\\hafiz\\source\\repos\\AkilliYurtSistemiProjesi\\YurtYonetimSistemi.API\\YurtYonetimSistemi.API\\YurtYonetimSistemi.API.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\hafiz\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\hafiz\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
     "C:\\Users\\hafiz\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\hafiz\\.nuget\\packages\\humanizer.core.af\\2.14.1\\humanizer.core.af.2.14.1.nupkg.sha512",

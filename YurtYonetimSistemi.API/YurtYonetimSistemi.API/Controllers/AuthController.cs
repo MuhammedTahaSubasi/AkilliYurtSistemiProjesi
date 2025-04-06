@@ -29,8 +29,9 @@ namespace YurtYonetimSistemi.API.Controllers
             if (kullanici == null)
                 return Unauthorized("Kullanıcı bulunamadı.");
 
-            if (kullanici.Sifre != dto.Sifre)
-                return Unauthorized("Şifre hatalı.");
+            bool isValid = BCrypt.Net.BCrypt.Verify(dto.Sifre, kullanici.Sifre);
+            if (!isValid)
+                return Unauthorized("Şifre hatalı");
 
             var token = _tokenService.CreateToken(kullanici);
 
@@ -40,5 +41,26 @@ namespace YurtYonetimSistemi.API.Controllers
                 token = token
             });
         }
+
+        [HttpPost("register")]
+        public async Task<IActionResult> Register([FromBody] RegisterDto dto)
+        {
+            var hashedPassword = BCrypt.Net.BCrypt.HashPassword(dto.Sifre);
+
+            var kullanici = new Kullanici
+            {
+                Ad = dto.Ad,
+                Soyad = dto.Soyad,
+                Email = dto.Email,
+                Sifre = hashedPassword,
+                RolID = dto.RolID
+            };
+
+            _context.Kullanicilar.Add(kullanici);
+            await _context.SaveChangesAsync();
+
+            return Ok(new { message = "Kayıt başarılı" });
+        }
+
     }
 }
