@@ -7,9 +7,34 @@ document.addEventListener("DOMContentLoaded", () => {
       const email = document.getElementById("email").value;
       const password = document.getElementById("password").value;
   
-      // Şimdilik sadece kontrol amaçlı console'a yazalım
-      console.log("E-posta:", email);
-      console.log("Şifre:", password);
+      fetch("https://localhost:7107/api/Auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          email: email,
+          Sifre: password
+        })
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("Giriş başarısız.");
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log("Gelen token:", data.token);
+      
+        // 1. localStorage'a kaydet
+        localStorage.setItem("token", data.token);
+      
+        // 2. yönlendir
+        window.location.href = "Dashboard.html";
+      })
+      .catch(error => {
+        alert("Giriş yapılamadı: " + error.message);
+      });
   
     });
   });
