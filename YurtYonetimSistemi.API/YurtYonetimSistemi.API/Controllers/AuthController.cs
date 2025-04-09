@@ -38,7 +38,8 @@ namespace YurtYonetimSistemi.API.Controllers
             return Ok(new
             {
                 message = "Giriş başarılı",
-                token = token
+                token = token,
+                role = kullanici.Rol.RolAd
             });
         }
 

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using YurtYonetimSistemi.API.Models;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace YurtYonetimSistemi.API.Controllers
 {
@@ -113,6 +114,33 @@ namespace YurtYonetimSistemi.API.Controllers
         private bool KullaniciExists(Guid id)
         {
             return _context.Kullanicilar.Any(e => e.KullaniciID == id);
+        }
+
+        //GET ME 
+        [HttpGet("me")]
+        public async Task<IActionResult> GetCurrentUser()
+        {
+            var kullaniciId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (kullaniciId == null)
+                return Unauthorized();
+
+            var kullanici = await _context.Kullanicilar
+                .Include(k => k.Rol)
+                .FirstOrDefaultAsync(k => k.KullaniciID == Guid.Parse(kullaniciId));
+
+            if (kullanici == null)
+                return NotFound();
+
+            return Ok(new
+            {
+                kullanici.KullaniciID,
+                kullanici.Ad,
+                kullanici.Soyad,
+                kullanici.Email,
+                kullanici.TcNo,
+                kullanici.KayitTarihi,
+                Rol = kullanici.Rol?.RolAd
+            });
         }
 
     }

@@ -1,3 +1,4 @@
+//login
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("loginForm");
   
@@ -25,12 +26,18 @@ document.addEventListener("DOMContentLoaded", () => {
       })
       .then(data => {
         console.log("Gelen token:", data.token);
+        console.log("Gelen rol:", data.role);
       
         // 1. localStorage'a kaydet
         localStorage.setItem("token", data.token);
+        localStorage.setItem("role", data.role);
       
         // 2. yönlendir
-        window.location.href = "Dashboard.html";
+        if (data.role === "Öğrenci") {
+          window.location.href = "StudentDashboard.html"; // öğrenci paneli
+        } else {
+          window.location.href = "Dashboard.html"; // yönetici paneli
+        }
       })
       .catch(error => {
         alert("Giriş yapılamadı: " + error.message);
@@ -39,6 +46,35 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
   
+// Token kontrolü güvenlik
+function checkAuth() {
+  const token = localStorage.getItem("token");
+  if (!token) {
+    window.location.href = "index.html";
+    return;
+  }
+
+  fetch("https://localhost:7107/api/Kullanici/me", {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  })
+  .then(res => {
+    if (!res.ok) throw new Error("Token geçersiz");
+    return res.json();
+  })
+  .then(kullanici => {
+    console.log("Giriş yapan kullanıcı:", kullanici);
+    // Burada kullanıcı bilgilerini DOM'a da basabilirsin istersen
+  })
+  .catch(() => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+    window.location.href = "index.html";
+  });
+}
+
   document.addEventListener("DOMContentLoaded", () => {
     // MODAL AÇMA / KAPAMA
     const modal = document.getElementById("studentModal");
