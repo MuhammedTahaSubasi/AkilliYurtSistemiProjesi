@@ -13,7 +13,7 @@
   </script>
 </head>
 <body>
-
+  
   <!-- Öğrenci Ekle Modal -->
 <div class="modal" id="studentModal">
   <div class="modal-content">
@@ -59,12 +59,32 @@
 <div class="modal" id="studentDetailModal">
   <div class="modal-content">
     <span class="close" id="closeDetailModal">&times;</span>
-    <h2>Öğrenci Bilgileri</h2>
-    <p><strong>Ad Soyad:</strong> <span id="detailName"></span></p>
-    <p><strong>TC No:</strong> <span id="detailNumber"></span></p>
-    <p><strong>Oda:</strong> <span id="detailRoom"></span></p>
-    <p><strong>Sınıf:</strong> <span id="detailClass"></span></p>
-    <p><strong>Telefon:</strong> <span id="detailPhone"></span></p>
+    <form id="updateStudentForm">
+      <label>Ad Soyad</label>
+      <input type="text" id="updateAdSoyad" required>
+    
+      <label>TC No</label>
+      <input type="text" id="updateTcNo" required>
+      
+      <label>Email</label>
+      <input type="email" id="updateEmail" required>
+
+      <label>Şifre</label>
+      <input type="password" id="updateSifre">
+
+      <label>Telefon</label>
+      <input type="text" id="updateTelefon" required>
+    
+      <label>Oda</label>
+      <select id="updateOda"></select>
+    
+      <label>Sınıf</label>
+      <select id="updateSinif"></select>
+
+      <label>Rol</label>
+      <select id="updateRol"></select>
+      <button type="submit">Güncelle</button>
+    </form>
   </div>
 </div>
 

@@ -24,10 +24,13 @@ function listeleOgrenciler() {
                 <button class="detail-btn" onclick="showDetails(
                   '${kullanici.kullaniciID}',
                   '${kullanici.ad} ${kullanici.soyad}',
+                  '${kullanici.email || "-"}',
+                  '${kullanici.sifre || "-"}',
                   '${kullanici.tcNo || "-"}',
-                  '${kullanici.oda?.odaNo || "-"}',
-                  '${kullanici.sinif?.sinifAd || "-"}',
-                  '${kullanici.telefon || "-"}'
+                  '${kullanici.oda?.odaID || "-"}',        
+                  '${kullanici.sinif?.sinifID || "-"}',    
+                  '${kullanici.telefon || "-"}',
+                  '${kullanici.rol?.rolID || "-"}'
                 )">Detay</button>
                 <button class="delete-btn" onclick="deleteKullanici('${kullanici.kullaniciID}')">Sil</button>
               </td>
@@ -38,6 +41,94 @@ function listeleOgrenciler() {
       .catch(err => {
         console.error("Kullanıcılar yüklenemedi:", err);
       });
+  }
+  // Öğrenci güncelleme
+  document.getElementById("updateStudentForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+  
+    const id = e.target.dataset.kullaniciId;
+    const adSoyad = document.getElementById("updateAdSoyad").value;
+    const [ad, soyad] = adSoyad.trim().split(" ");
+    const email = document.getElementById("updateEmail").value;
+    const sifre = document.getElementById("updateSifre").value;
+    const tcNo = document.getElementById("updateTcNo").value;
+    const telefon = document.getElementById("updateTelefon").value;
+    const odaID = document.getElementById("updateOda").value;
+    const sinifID = document.getElementById("updateSinif").value;
+    const rolID = document.getElementById("updateRol").value;
+  
+    const payload = {
+      kullaniciID: id,
+      ad,
+      soyad,
+      email,
+      tcNo,
+      telefon,
+      odaID,
+      sinifID,
+      rolID
+    };
+  
+    // Eğer şifre girildiyse ekle
+    if (sifre.trim() !== "") {
+      payload.sifre = sifre;
+    }
+  
+    // Sunucuya PUT isteği gönder
+    fetch(`https://localhost:7107/api/Kullanici/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`
+      },
+      body: JSON.stringify(payload)
+    })
+      .then(res => {
+        if (!res.ok) throw new Error("Güncelleme başarısız.");
+        if (res.status === 204) {
+          return {}; // Boş bir obje dön
+        }
+        return res.json();
+      })
+      .then(data => {
+        alert("Öğrenci güncellendi.");
+        document.getElementById("studentDetailModal").style.display = "none";
+        listeleOgrenciler(); // Listeyi güncelle
+      })
+      .catch(err => {
+        console.error("Güncelleme hatası:", err);
+        alert("Bir hata oluştu.");
+      });
+  });
+
+  //güncelleme html bağlantısı 
+  function showDetails(id, adSoyad,email, sifre, tcNo, oda, sinif, telefon,rolID) {
+    document.getElementById("studentDetailModal").style.display = "flex";
+  
+    const [ad, soyad] = adSoyad.trim().split(" ");
+    document.getElementById("updateAdSoyad").value = `${ad} ${soyad}`;
+    document.getElementById("updateEmail").value = email;
+   document.getElementById("updateSifre").value = "";
+    document.getElementById("updateTcNo").value = tcNo;
+    document.getElementById("updateTelefon").value = telefon;
+  
+    // dropdownları önce doldur
+    loadOdalar("updateOda");
+    loadSiniflar("updateSinif");
+    loadRoller("updateRol");
+  
+    // sonra değer ata
+    setTimeout(() => {
+      document.getElementById("updateOda").value = oda;
+      document.getElementById("updateSinif").value = sinif;
+      document.getElementById("updateRol").value = rolID;
+    }, 200); // küçük bir gecikme dropdown dolmadan value vermemek için
+  
+    document.getElementById("closeDetailModal").onclick = () => {
+      document.getElementById("studentDetailModal").style.display = "none";
+    };
+  
+    document.getElementById("updateStudentForm").dataset.kullaniciId = id;
   }
   
   // Öğrenci Ekleme
@@ -112,7 +203,6 @@ function listeleOgrenciler() {
         alert("Bir hata oluştu.");
       });
   }
-  
 
   // Modal Aç / Kapat
   const openBtn = document.querySelector(".add-btn");
@@ -121,6 +211,9 @@ function listeleOgrenciler() {
   
   openBtn.addEventListener("click", () => {
     modal.style.display = "flex";
+    loadRoller("inputRol");
+    loadOdalar("inputOda");
+    loadSiniflar("inputSinif");
   });
   
   closeBtn.addEventListener("click", () => {
@@ -134,7 +227,7 @@ function listeleOgrenciler() {
   });
   
   // Select kutularını doldur
-  function loadRoller() {
+  function loadRoller(selectId) {
     fetch("https://localhost:7107/api/Rol", {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`
@@ -142,7 +235,7 @@ function listeleOgrenciler() {
     })
       .then(res => res.json())
       .then(data => {
-        const select = document.getElementById("inputRol");
+        const select = document.getElementById(selectId);
         select.innerHTML = "";
         data.forEach(rol => {
           const option = document.createElement("option");
@@ -153,7 +246,7 @@ function listeleOgrenciler() {
       });
   }
   
-  function loadOdalar() {
+  function loadOdalar(selectId) {
     fetch("https://localhost:7107/api/Oda", {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`
@@ -161,7 +254,7 @@ function listeleOgrenciler() {
     })
       .then(res => res.json())
       .then(data => {
-        const select = document.getElementById("inputOda");
+        const select = document.getElementById(selectId);
         select.innerHTML = "";
         data.forEach(oda => {
           const option = document.createElement("option");
@@ -172,7 +265,7 @@ function listeleOgrenciler() {
       });
   }
   
-  function loadSiniflar() {
+  function loadSiniflar(selectId) {
     fetch("https://localhost:7107/api/Sinif", {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`
@@ -180,7 +273,7 @@ function listeleOgrenciler() {
     })
       .then(res => res.json())
       .then(data => {
-        const select = document.getElementById("inputSinif");
+        const select = document.getElementById(selectId);
         select.innerHTML = "";
         data.forEach(sinif => {
           const option = document.createElement("option");
@@ -193,7 +286,5 @@ function listeleOgrenciler() {
   
   // Sayfa yüklendiğinde çalıştır
   listeleOgrenciler();
-  loadRoller();
-  loadOdalar();
-  loadSiniflar();
+
   

@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using YurtYonetimSistemi.API.Models;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
+using System.Text.Json;
 
 namespace YurtYonetimSistemi.API.Controllers
 {
@@ -71,32 +72,63 @@ namespace YurtYonetimSistemi.API.Controllers
 
         // PUT: api/Kullanici/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutKullanici(Guid id, Kullanici kullanici)
+        public async Task<IActionResult> PutKullanici(Guid id, [FromBody] JsonElement requestBody)
         {
-            if (id != kullanici.KullaniciID)
-            {
-                return BadRequest();
-            }
+            var mevcutKullanici = await _context.Kullanicilar.FindAsync(id);
+            if (mevcutKullanici == null)
+                return NotFound();
 
-            _context.Entry(kullanici).State = EntityState.Modified;
-
+            // Request'i JSON olarak işle
             try
             {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!KullaniciExists(id))
+                // Kullanıcı ID kontrolü
+                if (requestBody.TryGetProperty("kullaniciID", out var kullaniciIDElement))
                 {
-                    return NotFound();
+                    var kullaniciID = kullaniciIDElement.GetGuid();
+                    if (id != kullaniciID)
+                        return BadRequest("ID uyuşmazlığı");
                 }
-                else
-                {
-                    throw;
-                }
-            }
 
-            return NoContent();
+                // Diğer alanları güncelle
+                if (requestBody.TryGetProperty("ad", out var adElement))
+                    mevcutKullanici.Ad = adElement.GetString();
+
+                if (requestBody.TryGetProperty("soyad", out var soyadElement))
+                    mevcutKullanici.Soyad = soyadElement.GetString();
+
+                if (requestBody.TryGetProperty("email", out var emailElement))
+                    mevcutKullanici.Email = emailElement.GetString();
+
+                if (requestBody.TryGetProperty("tcNo", out var tcNoElement))
+                    mevcutKullanici.TcNo = tcNoElement.GetString();
+
+                if (requestBody.TryGetProperty("telefon", out var telefonElement))
+                    mevcutKullanici.Telefon = telefonElement.GetString();
+
+                if (requestBody.TryGetProperty("odaID", out var odaIDElement) && !odaIDElement.ValueKind.Equals(JsonValueKind.Null))
+                    mevcutKullanici.OdaID = odaIDElement.TryGetGuid(out var odaGuid) ? odaGuid : (Guid?)null;
+
+                if (requestBody.TryGetProperty("sinifID", out var sinifIDElement) && !sinifIDElement.ValueKind.Equals(JsonValueKind.Null))
+                    mevcutKullanici.SinifID = sinifIDElement.TryGetGuid(out var sinifGuid) ? sinifGuid : (Guid?)null;
+
+                if (requestBody.TryGetProperty("rolID", out var rolIDElement) && !rolIDElement.ValueKind.Equals(JsonValueKind.Null))
+                    mevcutKullanici.RolID = rolIDElement.TryGetGuid(out var rolGuid) ? rolGuid : (Guid?)null;
+
+                // Şifre alanını özel olarak işle
+                if (requestBody.TryGetProperty("sifre", out var sifreElement) &&
+                    sifreElement.ValueKind != JsonValueKind.Null &&
+                    !string.IsNullOrWhiteSpace(sifreElement.GetString()))
+                {
+                    mevcutKullanici.Sifre = BCrypt.Net.BCrypt.HashPassword(sifreElement.GetString());
+                }
+
+                await _context.SaveChangesAsync();
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Güncelleme hatası: {ex.Message}");
+            }
         }
 
         // DELETE: api/Kullanici/5
