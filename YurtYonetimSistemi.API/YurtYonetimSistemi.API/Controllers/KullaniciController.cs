@@ -23,7 +23,11 @@ namespace YurtYonetimSistemi.API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Kullanici>>> GetKullanicilar()
         {
-            return await _context.Kullanicilar.Include(k => k.Rol).ToListAsync();
+            return await _context.Kullanicilar
+                .Include(k => k.Rol)
+                .Include(k => k.Oda)
+                .Include(k => k.Sinif)
+                .ToListAsync();
         }
 
         // GET: api/Kullanici/5

@@ -12,41 +12,62 @@
     }
   </script>
 </head>
-<!-- Öğrenci Ekle Modal -->
-<div class="modal" id="studentModal">
-    <div class="modal-content">
-      <span class="close" id="closeModal">&times;</span>
-      <h2>Yeni Öğrenci Ekle</h2>
-      <form id="studentForm">
-        <label>Ad Soyad</label>
-        <input type="text" required />
-        
-        <label>Öğrenci No</label>
-        <input type="text" required />
-        
-        <label>Oda</label>
-        <input type="text" required />
-        
-        <label>Telefon</label>
-        <input type="text" required />
-  
-        <button type="submit">Kaydet</button>
-      </form>
-    </div>
-  </div>
-  <!-- Öğrenci Detay Modal -->
-<div class="modal" id="studentDetailModal">
-    <div class="modal-content">
-      <span class="close" id="closeDetailModal">&times;</span>
-      <h2>Öğrenci Bilgileri</h2>
-      <p><strong>Ad Soyad:</strong> <span id="detailName"></span></p>
-      <p><strong>Öğrenci No:</strong> <span id="detailNumber"></span></p>
-      <p><strong>Oda:</strong> <span id="detailRoom"></span></p>
-      <p><strong>Telefon:</strong> <span id="detailPhone"></span></p>
-    </div>
-  </div>
-  
 <body>
+
+  <!-- Öğrenci Ekle Modal -->
+<div class="modal" id="studentModal">
+  <div class="modal-content">
+    <span class="close" id="closeModal">&times;</span>
+    <h2>Yeni Öğrenci Ekle</h2>
+    <form id="studentForm">
+      <label>Ad Soyad</label>
+      <input type="text" id="inputAdSoyad" required />
+
+      <label>Email</label>
+      <input id="inputEmail" type="email" required />
+
+      <label>Şifre</label>
+      <input id="inputSifre" type="password" required />
+      
+      <label>TC No</label>
+      <input type="text" id="inputTcNo" required />
+      
+      <label>Telefon</label>
+      <input type="text" id="inputTelefon" required />
+
+      <label>Rol</label>
+      <select id="inputRol">
+        <!-- API'den gelecek -->
+      </select>
+      
+      <label>Oda</label>
+      <select id="inputOda">
+        <!-- API'den gelecek -->
+      </select>
+      
+      <label>Sınıf</label>
+      <select id="inputSinif">
+        <!-- API'den gelecek -->
+      </select>      
+
+      <button type="submit">Kaydet</button>
+    </form>
+  </div>
+</div>
+
+   <!-- Öğrenci Detay Modal -->
+<div class="modal" id="studentDetailModal">
+  <div class="modal-content">
+    <span class="close" id="closeDetailModal">&times;</span>
+    <h2>Öğrenci Bilgileri</h2>
+    <p><strong>Ad Soyad:</strong> <span id="detailName"></span></p>
+    <p><strong>TC No:</strong> <span id="detailNumber"></span></p>
+    <p><strong>Oda:</strong> <span id="detailRoom"></span></p>
+    <p><strong>Sınıf:</strong> <span id="detailClass"></span></p>
+    <p><strong>Telefon:</strong> <span id="detailPhone"></span></p>
+  </div>
+</div>
+
   <div class="sidebar">
     <h2>Yurt Paneli</h2>
     <ul>
@@ -74,33 +95,15 @@
           <thead>
             <tr>
               <th>Ad Soyad</th>
-              <th>Öğrenci No</th>
+              <th>TC No</th>
               <th>Oda</th>
+              <th>Sınıf</th>
               <th>Telefon</th>
               <th>İşlem</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td>Ahmet Yılmaz</td>
-              <td>20231234</td>
-              <td>3B</td>
-              <td>0555 123 4567</td>
-              <td>
-                <button class="detail-btn">Detay</button>
-                <button class="delete-btn">Sil</button>
-              </td>
-            </tr>
-            <tr>
-              <td>Ayşe Demir</td>
-              <td>20237890</td>
-              <td>2A</td>
-              <td>0543 765 4321</td>
-              <td>
-                <button class="detail-btn">Detay</button>
-                <button class="delete-btn">Sil</button>
-              </td>
-            </tr>
+          <tbody id="kullaniciListesi">
+            
           </tbody>
         </table>
       </div>
@@ -108,6 +111,7 @@
   </div>
 
   <script src="js/main.js"></script>
+  <script src="js/students.js"></script>
   <script>
     checkAuth();
   </script>
