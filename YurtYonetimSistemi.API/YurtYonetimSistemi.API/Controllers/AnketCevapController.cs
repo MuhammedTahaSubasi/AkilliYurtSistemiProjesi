@@ -31,7 +31,10 @@ namespace YurtYonetimSistemi.API.Controllers
           {
               return NotFound();
           }
-            return await _context.AnketCevaplar.ToListAsync();
+            return await _context.AnketCevaplar
+                .Include(a => a.Kullanici)
+                .Include(a => a.Anket)
+                .ToListAsync();
         }
 
         // GET: api/AnketCevap/5
@@ -99,6 +102,15 @@ namespace YurtYonetimSistemi.API.Controllers
             if (alreadyExists)
             {
                 return BadRequest("Bu öğrenci bu ankete zaten katılmış.");
+            }
+
+            // İlişkili Kullanici ve Anket nesnelerini veritabanından çek
+            anketCevap.Kullanici = await _context.Kullanicilar.FindAsync(anketCevap.KullaniciID);
+            anketCevap.Anket = await _context.Anketler.FindAsync(anketCevap.AnketID);
+
+            if (anketCevap.Kullanici == null || anketCevap.Anket == null)
+            {
+                return BadRequest("Geçersiz KullaniciID veya AnketID.");
             }
 
             _context.AnketCevaplar.Add(anketCevap);

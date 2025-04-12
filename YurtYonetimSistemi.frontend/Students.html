@@ -13,7 +13,6 @@
   </script>
 </head>
 <body>
-  
   <!-- Öğrenci Ekle Modal -->
 <div class="modal" id="studentModal">
   <div class="modal-content">
@@ -94,6 +93,7 @@
       <li><a href="Dashboard.html">Dashboard</a></li>
       <li><a href="Students.html" class="active">Öğrenciler</a></li>
       <li><a href="Transactions.html">İşlemler</a></li>
+      <li><a href="Surveys.html">Anketler</a></li>
       <li><a href="facilities.html" class="active">Ortak Alanlar</a></li>
       <li><a href="Settings.html">Ayarlar</a></li>
     </ul>
@@ -116,7 +116,12 @@
             <option value="Admin">Adminler</option>
             <option value="all">Tümü</option>
           </select>
-  
+          <input 
+          type="text" 
+          id="kullaniciArama" 
+          placeholder="Ad, Soyad veya TC No ile ara..." 
+          style="padding: 5px; min-width: 200px;"
+        >
           <button class="add-btn">+ Yeni Kullanıcı</button>
         </div>
       </div>

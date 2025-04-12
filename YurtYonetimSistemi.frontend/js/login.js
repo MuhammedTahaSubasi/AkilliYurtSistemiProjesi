@@ -28,20 +28,38 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log("Gelen token:", data.token);
         console.log("Gelen rol:", data.role);
       
-        // 1. localStorage'a kaydet
+        // 1. localStorage'a token ve rol kaydet
         localStorage.setItem("token", data.token);
         localStorage.setItem("role", data.role);
       
-        // 2. yönlendir
-        if (data.role === "Öğrenci") {
-          window.location.href = "StudentDashboard.html"; // öğrenci paneli
-        } else {
-          window.location.href = "Dashboard.html"; // yönetici paneli
-        }
+        // 2. Kullanıcı bilgilerini çek ve kullanıcıID'yi kaydet
+        fetch("https://localhost:7107/api/Kullanici/me", {
+          headers: {
+            Authorization: `Bearer ${data.token}`
+          }
+        })
+        .then(res => res.json())
+        .then(user => {
+          console.log("Giriş yapan kullanıcı:", user);
+          localStorage.setItem("userId", user.kullaniciID); // ✅ Önemli kısım
+      
+          // 3. Yönlendirme
+          if (data.role === "Öğrenci") {
+            window.location.href = "StudentDashboard.html";
+          } else {
+            window.location.href = "Dashboard.html";
+          }
+        })
+        .catch(err => {
+          console.error("Kullanıcı bilgileri alınamadı:", err);
+          alert("Kullanıcı bilgileri alınırken bir hata oluştu.");
+        });
       })
       .catch(error => {
+        console.error("Login hatası:", error);
         alert("Giriş yapılamadı: " + error.message);
       });
+      
   
     });
   });

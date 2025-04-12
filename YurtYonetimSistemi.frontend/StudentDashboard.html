@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Öğrenci Paneli</title>
+  <link rel="stylesheet" href="css/style.css" />
   <script>
     const token = localStorage.getItem("token");
     if (!token) {
@@ -11,14 +12,27 @@
   </script>
 </head>
 <body>
-  <h1>Hoş geldin, Öğrenci!</h1>
-  <p>Bu panelde öğrenciye özel bilgiler yer alacak.</p>
+  <div class="main-content">
+    <div class="navbar">
+      <h1>Öğrenci Paneli</h1>
+      <button onclick="logout()">Çıkış Yap</button>
+    </div>
 
-  <button onclick="logout()">Çıkış Yap</button>
+    <div class="content">
+      <div class="table-header">
+        <h2>Aktif Anketler</h2>
+      </div>
+      <div id="anketContainer" class="anket-container">
+        <!-- Anketler buraya gelecek -->
+      </div>
+    </div>
+  </div>
 
   <script src="js/main.js"></script>
+  <script src="js/surveyAnswers.js"></script>
   <script>
     checkAuth();
   </script>
 </body>
+
 </html>

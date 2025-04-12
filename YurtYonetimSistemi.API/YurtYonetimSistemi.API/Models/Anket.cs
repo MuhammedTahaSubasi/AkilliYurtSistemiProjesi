@@ -12,6 +12,8 @@ namespace YurtYonetimSistemi.API.Models
 
         public DateTime OlusturmaTarihi { get; set; } = DateTime.Now;
 
+        public bool AktifMi { get; set; } = true;
+
         public ICollection<AnketCevap>? Cevaplar { get; set; }
     }
 }

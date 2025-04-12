@@ -10,11 +10,13 @@ function listeleOgrenciler() {
       const tbody = document.getElementById("kullaniciListesi");
       tbody.innerHTML = "";
 
-      // 🔽 Dropdown'dan seçilen rolü al
+      //  Dropdown'dan seçilen rolü al
       const rolFiltre = document.getElementById("kullaniciFiltre")?.value || "Öğrenci";
+      //  Arama kutusundan metni al
+      const aramaMetni = document.getElementById("kullaniciArama")?.value?.toLowerCase() || "";
       const listeBasligi = document.getElementById("listeBasligi");
 
-      // 🔄 Başlığı değiştir
+      //  Başlığı değiştir
       listeBasligi.textContent = {
         "Öğrenci": "Öğrenci Listesi",
         "Personel": "Personel Listesi",
@@ -22,13 +24,31 @@ function listeleOgrenciler() {
         "all": "Tüm Kullanıcılar"
       }[rolFiltre] || "Kullanıcı Listesi";
 
-      // 🔍 Filtre uygulama
+      //  Filtre uygulama
       let filtreli = data;
+      // 1. Önce rol filtresi uygula
       if (rolFiltre !== "all") {
         filtreli = data.filter(k => k.rol?.rolAd?.toLowerCase() === rolFiltre.toLowerCase());
       }
+      
+      // 2. Ardından arama filtresi uygula
+      if (aramaMetni.trim() !== "") {
+        filtreli = filtreli.filter(k => {
+          const tamAd = `${k.ad} ${k.soyad}`.toLowerCase();
+          const tcNo = k.tcNo?.toLowerCase() || "";
+          
+          // Ad Soyad veya TC No içinde arama yap
+          return tamAd.includes(aramaMetni) || tcNo.includes(aramaMetni);
+        });
+      }
 
-      // 🧾 Listeleme
+      // Eğer filtreleme sonucunda hiç sonuç yoksa mesaj göster
+      if (filtreli.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="6">Arama kriterlerine uygun kullanıcı bulunamadı.</td></tr>`;
+        return;
+      }
+
+      //  Listeleme
       filtreli.forEach(kullanici => {
         const tr = document.createElement("tr");
         tr.innerHTML = `
@@ -59,6 +79,36 @@ function listeleOgrenciler() {
       console.error("Kullanıcılar yüklenemedi:", err);
     });
 }
+
+// Sayfa yüklendiğinde çalıştır
+document.addEventListener("DOMContentLoaded", function () {
+  try {
+    console.log("Sayfa yüklendi, listeleme çalıştırılıyor...");
+    listeleOgrenciler();
+
+    //  Dropdown değiştikçe listeyi güncelle
+    const filtreSelect = document.getElementById("kullaniciFiltre");
+    if (filtreSelect) {
+      filtreSelect.addEventListener("change", () => {
+        listeleOgrenciler();
+      });
+    }
+    
+    //  Arama kutusu için event listener ekle
+    const aramaKutusu = document.getElementById("kullaniciArama");
+    if (aramaKutusu) {
+      aramaKutusu.addEventListener("input", () => {
+        // Her karakter girişinde 300ms bekleyerek sürekli istek göndermeyi önle
+        clearTimeout(aramaKutusu.timer);
+        aramaKutusu.timer = setTimeout(() => {
+          listeleOgrenciler();
+        }, 300);
+      });
+    }
+  } catch (error) {
+    console.error("Sayfa yüklenirken hata:", error);
+  }
+});
 
   // Öğrenci güncelleme
   document.getElementById("updateStudentForm").addEventListener("submit", function (e) {

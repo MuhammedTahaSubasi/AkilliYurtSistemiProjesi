@@ -188,7 +188,8 @@ body {
     background-color: white;
     padding: 30px;
     border-radius: 10px;
-    width: 400px;
+    width: 700px;
+    max-width: 90%;
     position: relative;
   }
   
@@ -221,5 +222,45 @@ body {
     font-size: 24px;
     cursor: pointer;
   }
+
+  .anket-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .anket-kart {
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .anket-kart h3 {
+    margin: 0 0 10px;
+  }
+  
+  .anket-kart select,
+  .anket-kart button {
+    margin-top: 10px;
+  }
     
+  .checkbox-row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; 
+    width: 100%;
+    margin-top: 15px;
+  }
+  
+  .checkbox-row label {
+    margin-right: -340px;
+    flex: 0 0 auto; 
+  }
+  
+  .checkbox-row input[type="checkbox"] {
+    margin: 0;
+    vertical-align: middle;
+  }
+  
     
