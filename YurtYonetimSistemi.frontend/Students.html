@@ -36,10 +36,10 @@
       <input type="text" id="inputTelefon" required />
 
       <label>Rol</label>
-      <select id="inputRol">
+      <select id="inputRol" onchange="handleRolChange('inputRol', 'inputOda', 'inputSinif', 'odaSinifWrapper')">
         <!-- API'den gelecek -->
       </select>
-      
+      <div id="odaSinifWrapper">
       <label>Oda</label>
       <select id="inputOda">
         <!-- API'den gelecek -->
@@ -49,7 +49,7 @@
       <select id="inputSinif">
         <!-- API'den gelecek -->
       </select>      
-
+    </div>
       <button type="submit">Kaydet</button>
     </form>
   </div>
@@ -74,15 +74,15 @@
 
       <label>Telefon</label>
       <input type="text" id="updateTelefon" required>
-    
+      <div id="updateOdaSinifWrapper">
       <label>Oda</label>
       <select id="updateOda"></select>
     
       <label>Sınıf</label>
       <select id="updateSinif"></select>
-
+      </div>
       <label>Rol</label>
-      <select id="updateRol"></select>
+      <select id="updateRol" onchange="handleRolChange('updateRol', 'updateOda', 'updateSinif', 'updateOdaSinifWrapper')"></select>
       <button type="submit">Güncelle</button>
     </form>
   </div>
@@ -104,31 +104,41 @@
       <h1>Öğrenciler</h1>
       <button>Çıkış Yap</button>
     </div>
-
+  
     <div class="content">
-        <div class="table-header">
-          <h2>Öğrenci Listesi</h2>
-          <button class="add-btn">+ Yeni Öğrenci</button>
+      <div class="table-header">
+        <h2 id="listeBasligi">Öğrenci Listesi</h2>
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <label for="kullaniciFiltre">Filtrele:</label>
+          <select id="kullaniciFiltre">
+            <option value="Öğrenci">Öğrenciler</option>
+            <option value="Personel">Personeller</option>
+            <option value="Admin">Adminler</option>
+            <option value="all">Tümü</option>
+          </select>
+  
+          <button class="add-btn">+ Yeni Kullanıcı</button>
         </div>
-      
-        <table class="student-table">
-          <thead>
-            <tr>
-              <th>Ad Soyad</th>
-              <th>TC No</th>
-              <th>Oda</th>
-              <th>Sınıf</th>
-              <th>Telefon</th>
-              <th>İşlem</th>
-            </tr>
-          </thead>
-          <tbody id="kullaniciListesi">
-            
-          </tbody>
-        </table>
       </div>
-      
+  
+      <table class="student-table">
+        <thead>
+          <tr>
+            <th>Ad Soyad</th>
+            <th>TC No</th>
+            <th>Oda</th>
+            <th>Sınıf</th>
+            <th>Telefon</th>
+            <th>İşlem</th>
+          </tr>
+        </thead>
+        <tbody id="kullaniciListesi">
+          <!-- Dinamik olarak JS ile dolacak -->
+        </tbody>
+      </table>
+    </div>
   </div>
+  
 
   <script src="js/main.js"></script>
   <script src="js/students.js"></script>
