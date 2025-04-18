@@ -140,7 +140,7 @@ body {
   }
   
   .add-btn {
-    background-color: #2d89ef;
+    background-color:#4caf50;
     color: white;
     border: none;
     padding: 10px 14px;
@@ -150,7 +150,7 @@ body {
   }
   
   .add-btn:hover {
-    background-color: #1b5fbd;
+    background-color:#4caf50;
   }
   
   .detail-btn,
@@ -163,7 +163,7 @@ body {
   }
   
   .detail-btn {
-    background-color: #4caf50;
+    background-color:#1b5fbd;
     color: white;
   }
   
@@ -204,6 +204,31 @@ body {
     border: 1px solid #ccc;
     border-radius: 6px;
   }
+  textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    resize: vertical;
+    font-family: inherit;
+    font-size: 16px;
+    outline: none;
+    box-sizing: border-box;
+  }
+  
+  .modal-content textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    resize: vertical;
+    font-family: inherit;       
+  font-size: 16px;             
+  outline: none; 
+  }
+  
   
   .modal-content button {
     width: 100%;

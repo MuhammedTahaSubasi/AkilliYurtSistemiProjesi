@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Öğrenci Paneli - Anketler</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <script>
+    const token = localStorage.getItem("token");
+    if (!token) {
+      window.location.href = "index.html";
+    }
+  </script>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Öğrenci Paneli</h2>
+        <ul>
+          <li><a href="StudentDashboard.html" class="active">🏠 Anasayfa</a></li>
+          <li><a href="surveyAnswers.html">📋 Anketleri Cevapla</a></li>
+          <li><a href="maintenanceRequestAnswer.html">🛠️ Bakım Talebi Oluştur</a></li>
+        </ul>
+      </div>
+    
+      <div class="main-content">
+        <div class="navbar">
+          <h1>Hoş geldiniz, Öğrenci</h1>
+          <button onclick="logout()">Çıkış Yap</button>
+        </div>
+
+    <div class="content">
+      <div class="table-header">
+        <h2>Aktif Anketler</h2>
+      </div>
+      <div id="anketContainer" class="anket-container">
+        <!-- Anketler buraya gelecek -->
+      </div>
+    </div>
+
+    
+
+  <script src="../js/main.js"></script>
+  <script src="../js/student/surveyAnswers.js"></script>
+  <script>
+    checkAuth();
+  </script>
+</body>
+</html>

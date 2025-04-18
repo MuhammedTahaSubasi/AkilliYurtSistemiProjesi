@@ -31,7 +31,9 @@ namespace YurtYonetimSistemi.API.Controllers
           {
               return NotFound();
           }
-            return await _context.BakimTalepleri.ToListAsync();
+            return await _context.BakimTalepleri
+                       .Include(t => t.Kullanici) 
+                       .ToListAsync();
         }
 
         // GET: api/BakimTalep/5
@@ -57,29 +59,16 @@ namespace YurtYonetimSistemi.API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutBakimTalep(Guid id, BakimTalep bakimTalep)
         {
-            if (id != bakimTalep.TalepID)
-            {
-                return BadRequest();
-            }
+            var mevcutTalep = await _context.BakimTalepleri.FindAsync(id);
+            if (mevcutTalep == null)
+                return NotFound();
 
-            _context.Entry(bakimTalep).State = EntityState.Modified;
+            // Güncellenecek alanları tek tek set et
+            mevcutTalep.Baslik = bakimTalep.Baslik;
+            mevcutTalep.Aciklama = bakimTalep.Aciklama;
+            mevcutTalep.TalepDurumu = bakimTalep.TalepDurumu;
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!BakimTalepExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
+            await _context.SaveChangesAsync();
             return NoContent();
         }
 

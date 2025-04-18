@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bakım Talepleri</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <script>
+    const token = localStorage.getItem("token");
+    if (!token) {
+      window.location.href = "index.html";
+    }
+  </script>
+</head>
+<body>
+  <div class="sidebar">
+    <h2>Yurt Paneli</h2>
+    <ul>
+      <li><a href="Dashboard.html">Dashboard</a></li>
+      <li><a href="Students.html">Öğrenciler</a></li>
+      <li><a href="Transactions.html">İşlemler</a></li>
+      <li><a href="Surveys.html">Anketler</a></li>
+      <li><a href="maintenance-requests.html" class="active">Bakım Talepleri</a></li>
+      <li><a href="facilities.html">Ortak Alanlar</a></li>
+      <li><a href="Settings.html">Ayarlar</a></li>
+    </ul>
+  </div>
+
+  <div class="main-content">
+    <div class="navbar">
+      <h1>Bakım Talepleri</h1>
+      <button>Çıkış Yap</button>
+    </div>
+  
+    <!-- Talep Ekle Modal -->
+<div class="modal" id="bakimEkleModal">
+    <div class="modal-content">
+      <span class="close" id="closeEkleModal">&times;</span>
+      <h2>Yeni Bakım Talebi Ekle</h2>
+      <form id="bakimForm">
+        <label for="bakimBaslik">Başlık</label>
+        <input type="text" id="bakimBaslik" required style="margin-bottom: 10px;" />
+      
+        <label for="bakimAciklama">Açıklama</label>
+        <textarea id="bakimAciklama" rows="4" style="margin-bottom: 10px;"></textarea>
+      
+        <button type="submit" class="add-btn">Talep Oluştur</button>
+      </form>
+    </div>
+  </div>
+
+    <div class="table-header">
+  <h2 id="listeBasligi">Bakım Talep Listesi</h2>
+  <div style="display: flex; align-items: center; gap: 10px;">
+    <label for="talepFiltre">Filtrele:</label>
+    <select id="talepFiltre" onchange="listeleBakimTalepleri()">
+      <option value="all">Tümü</option>
+      <option value="active">Aktif</option>
+      <option value="completed">Tamamlanmış</option>
+    </select>
+    <button class="add-btn" onclick="modalAc('bakimEkleModal')">+ Yeni Talep</button>
+  </div>
+</div>
+  
+      <table class="student-table">
+        <thead>
+          <tr>
+            <th>Kullanıcı</th>
+            <th>Başlık</th>
+            <th>Açıklama</th>
+            <th>Tarih</th>
+            <th>Durum</th>
+            <th>İşlem</th>
+          </tr>
+        </thead>
+        <tbody id="talepListesi">
+          <!-- Dinamik olarak JS ile dolacak -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+  <script src="../js/main.js"></script>
+  <script src="../js/admin/maintenance-requests.js"></script>
+  <script>
+    checkAuth();
+  </script>
+</body>
+</html>

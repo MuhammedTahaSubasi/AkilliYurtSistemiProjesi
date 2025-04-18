@@ -41,13 +41,13 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(res => res.json())
         .then(user => {
           console.log("Giriş yapan kullanıcı:", user);
-          localStorage.setItem("userId", user.kullaniciID); // ✅ Önemli kısım
+          localStorage.setItem("kullaniciId", user.kullaniciID); // ✅ Önemli kısım
       
           // 3. Yönlendirme
           if (data.role === "Öğrenci") {
-            window.location.href = "StudentDashboard.html";
+            window.location.href = "student/StudentDashboard.html";
           } else {
-            window.location.href = "Dashboard.html";
+            window.location.href = "admin/Dashboard.html";
           }
         })
         .catch(err => {

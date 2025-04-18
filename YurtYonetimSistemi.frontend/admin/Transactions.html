@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>İşlemler</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="../css/style.css" />
   <script>
     const token = localStorage.getItem("token");
     if (!token) {
@@ -20,7 +20,8 @@
       <li><a href="Students.html">Öğrenciler</a></li>
       <li><a href="Transactions.html" class="active">İşlemler</a></li>
       <li><a href="Surveys.html">Anketler</a></li>
-      <li><a href="facilities.html" class="active">Ortak Alanlar</a></li>
+      <li><a href="maintenance-requests.html">Bakım Talepleri</a></li>
+      <li><a href="facilities.html">Ortak Alanlar</a></li>
       <li><a href="Settings.html">Ayarlar</a></li>
     </ul>
   </div>
@@ -141,7 +142,7 @@
       
   </div>
 
-  <script src="js/main.js"></script>
+  <script src="../js/main.js"></script>
   <script>
     checkAuth();
   </script>

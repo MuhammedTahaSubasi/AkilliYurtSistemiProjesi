@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   
   function getAktifAnketler() {
     const token = localStorage.getItem("token");
-    const userId = localStorage.getItem("userId");
+    const kullaniciId = localStorage.getItem("kullaniciId");
   
     const container = document.getElementById("anketContainer");
     container.innerHTML = "";
@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
               div.className = "anket-kart";
   
               const cevap = cevaplar.find(
-                c => c.anketID === anket.anketID && c.kullaniciID === userId
+                c => c.anketID === anket.anketID && c.kullaniciID === kullaniciId
               );
   
               if (cevap) {
@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
   
   //anket cevap ekle
   function anketeCevapVer(anketID) {
-    const kullaniciID = localStorage.getItem("userId"); // girişte kaydettiysen
+    const kullaniciID = localStorage.getItem("kullaniciId"); 
     const puan = parseInt(document.getElementById(`puan-${anketID}`).value);
   
     fetch("https://localhost:7107/api/AnketCevap", {
