@@ -50,15 +50,25 @@ namespace YurtYonetimSistemi.API.Controllers
         [HttpPost]
         public async Task<ActionResult<Kullanici>> PostKullanici(Kullanici kullanici)
         {
-            // 1. İlgili odayı çek
+            // 1. Oda kapasite kontrolü
             var oda = await _context.Odalar
                 .Include(o => o.Kullanicilar)
                 .FirstOrDefaultAsync(o => o.OdaID == kullanici.OdaID);
 
-            // 2. Oda doluysa kaydı reddet
             if (oda != null && oda.Kullanicilar.Count >= oda.Kapasite)
             {
                 return BadRequest("Bu oda şu anda dolu. Lütfen başka bir oda seçin.");
+            }
+
+            // 2. Sınıf kapasite kontrolü
+            var mevcutSayisi = await _context.Kullanicilar
+                .CountAsync(k => k.SinifID == kullanici.SinifID);
+
+            var sinif = await _context.Siniflar.FindAsync(kullanici.SinifID);
+
+            if (sinif != null && mevcutSayisi >= sinif.Kapasite)
+            {
+                return BadRequest("Bu sınıfın kapasitesi dolmuştur. Lütfen başka bir sınıf seçin.");
             }
 
             // 3. Şifreyi hashle ve kullanıcıyı kaydet
@@ -68,6 +78,7 @@ namespace YurtYonetimSistemi.API.Controllers
 
             return CreatedAtAction(nameof(GetKullanici), new { id = kullanici.KullaniciID }, kullanici);
         }
+
 
 
         // PUT: api/Kullanici/5

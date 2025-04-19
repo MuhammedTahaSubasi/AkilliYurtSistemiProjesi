@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sınıf Yönetimi</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <script>
+    const token = localStorage.getItem("token");
+    if (!token) {
+      window.location.href = "../index.html";
+    }
+  </script>
+</head>
+<body>
+  <div class="sidebar">
+    <h2>Yurt Paneli</h2>
+    <ul>
+      <li><a href="Dashboard.html">Dashboard</a></li>
+      <li><a href="Students.html">Öğrenciler</a></li>
+      <li><a href="Transactions.html">İşlemler</a></li>
+      <li><a href="Surveys.html">Anketler</a></li>
+      <li><a href="maintenance-requests.html">Bakım Talepleri</a></li>
+      <li><a href="facilities.html">Ortak Alanlar</a></li>
+      <li><a href="Events.html">Etkinlikler</a></li>
+      <li><a href="Rooms.html">Odalar</a></li>
+      <li><a href="Classes.html" class="active">Sınıflar</a></li>
+      <li><a href="Settings.html">Ayarlar</a></li>
+    </ul>
+  </div>
+
+  <div class="main-content">
+    <div class="navbar">
+      <h1>Sınıf Yönetimi</h1>
+      <button onclick="logout()">Çıkış Yap</button>
+    </div>
+
+    <div class="content">
+      <div class="table-header">
+        <h2>Sınıf Listesi</h2>
+        <button class="add-btn" onclick="modalAc('sinifModal')">+ Yeni Sınıf</button>
+      </div>
+
+      <table class="student-table">
+        <thead>
+          <tr>
+            <th>Sınıf Adı</th>
+            <th>Kat No</th>
+            <th>Kapasite</th>
+            <th>İşlem</th>
+          </tr>
+        </thead>
+        <tbody id="sinifListesi">
+          <!-- Sınıflar buraya gelecek -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Sınıf Ekle Modal -->
+  <div class="modal" id="sinifModal">
+    <div class="modal-content">
+      <span class="close" onclick="modalKapat('sinifModal')">&times;</span>
+      <h2>Yeni Sınıf Ekle</h2>
+      <form id="sinifForm">
+        <label>Sınıf Adı</label>
+        <input type="text" id="sinifAd" required />
+
+        <label>Kat No</label>
+       <input type="number" id="katNo" required />
+
+        <label>Kapasite</label>
+        <input type="number" id="kapasite" required />
+
+        <button type="submit" class="add-btn">Kaydet</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Güncelleme Modalı -->
+<div class="modal" id="sinifGuncelleModal">
+  <div class="modal-content">
+    <span class="close" onclick="modalKapat('sinifGuncelleModal')">&times;</span>
+    <h2>Sınıf Güncelle</h2>
+    <form id="sinifGuncelleForm">
+      <label>Sınıf Adı</label>
+      <input type="text" id="updateSinifAd" required />
+
+      <label>Kat No</label>
+      <input type="number" id="updateKatNo" required />
+
+      <label>Kapasite</label>
+      <input type="number" id="updateKapasite" required />
+
+      <button type="submit" class="detail-btn">Güncelle</button>
+    </form>
+  </div>
+</div>
+
+
+  <script src="../js/main.js"></script>
+  <script src="../js/admin/classes.js"></script>
+  <script>
+    checkAuth();
+  </script>
+</body>
+</html>
