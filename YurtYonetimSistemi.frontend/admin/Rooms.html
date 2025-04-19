@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Oda Yönetimi</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <script>
+    const token = localStorage.getItem("token");
+    if (!token) {
+      window.location.href = "../index.html";
+    }
+  </script>
+</head>
+<body>
+  <div class="sidebar">
+    <h2>Yurt Paneli</h2>
+    <ul>
+      <li><a href="Dashboard.html">Dashboard</a></li>
+      <li><a href="Students.html">Öğrenciler</a></li>
+      <li><a href="Transactions.html">İşlemler</a></li>
+      <li><a href="Surveys.html">Anketler</a></li>
+      <li><a href="Events.html">Etkinlikler</a></li>
+      <li><a href="Rooms.html" class="active">Odalar</a></li>
+      <li><a href="Classes.html">Sınıflar</a></li>
+      <li><a href="Settings.html">Ayarlar</a></li>
+    </ul>
+  </div>
+
+  <div class="main-content">
+    <div class="navbar">
+      <h1>Oda Yönetimi</h1>
+      <button onclick="logout()">Çıkış Yap</button>
+    </div>
+
+    <div class="content">
+      <div class="table-header">
+        <h2>Oda Listesi</h2>
+        <button class="add-btn" onclick="modalAc('odaModal')">+ Yeni Oda</button>
+      </div>
+
+      <table class="student-table">
+        <thead>
+          <tr>
+            <th>Oda No</th>
+            <th>Kat No</th>
+            <th>Kapasite</th>
+            <th>Durum</th>
+            <th>İşlem</th>
+          </tr>
+        </thead>
+        <tbody id="odaListesi">
+          <!-- JS ile doldurulacak -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Yeni Oda Modal -->
+  <div class="modal" id="odaModal">
+    <div class="modal-content">
+      <span class="close" onclick="modalKapat('odaModal')">&times;</span>
+      <h2>Yeni Oda Ekle</h2>
+      <form id="odaForm">
+        <label>Oda No</label>
+        <input type="text" id="odaNo" required />
+
+        <label>Kat No</label>
+        <input type="number" id="katNo" required />
+
+        <label>Kapasite</label>
+        <input type="number" id="kapasite" required />
+
+        <button type="submit" class="add-btn">Kaydet</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Oda Güncelleme Modal -->
+  <div class="modal" id="odaGuncelleModal">
+    <div class="modal-content">
+      <span class="close" onclick="modalKapat('odaGuncelleModal')">&times;</span>
+      <h2>Oda Güncelle</h2>
+      <form id="odaGuncelleForm">
+        <label>Oda No</label>
+        <input type="text" id="updateOdaNo" required />
+
+        <label>Kat No</label>
+        <input type="number" id="updateKatNo" required />
+
+        <label>Kapasite</label>
+        <input type="number" id="updateKapasite" required />
+
+        <button type="submit" class="detail-btn">Güncelle</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/admin/rooms.js"></script>
+  <script>
+    checkAuth();
+  </script>
+</body>
+</html>

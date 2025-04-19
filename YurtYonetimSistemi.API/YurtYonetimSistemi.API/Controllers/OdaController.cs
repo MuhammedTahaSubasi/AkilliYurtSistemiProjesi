@@ -63,6 +63,15 @@ namespace YurtYonetimSistemi.API.Controllers
                 return BadRequest();
             }
 
+            //  Mevcut öğrenci sayısını kontrol et
+            var mevcutOgrenciSayisi = await _context.Kullanicilar
+                .CountAsync(k => k.OdaID == id);
+
+            if (oda.Kapasite < mevcutOgrenciSayisi)
+            {
+                return BadRequest($"Bu odada zaten {mevcutOgrenciSayisi} öğrenci kalıyor. Kapasite daha düşük olamaz.");
+            }
+
             _context.Entry(oda).State = EntityState.Modified;
 
             try

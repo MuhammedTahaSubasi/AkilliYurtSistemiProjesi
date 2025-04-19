@@ -18,12 +18,6 @@ namespace YurtYonetimSistemi.API.Models
 
         public int Kapasite { get; set; }
 
-        // İlişki: Hangi sınıfa ait?
-        public Guid? SinifID { get; set; }
-
-        [ForeignKey("SinifID")]
-        public Sinif? Sinif { get; set; }
-
         // Oda’da kalan kullanıcılar
         public ICollection<Kullanici>? Kullanicilar { get; set; }
 
