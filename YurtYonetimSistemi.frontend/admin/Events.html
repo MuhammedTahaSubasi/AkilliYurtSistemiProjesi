@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Etkinlikler</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <script>
+    const token = localStorage.getItem("token");
+    if (!token) {
+      window.location.href = "../index.html";
+    }
+  </script>
+</head>
+<body>
+  <div class="sidebar">
+    <h2>Yurt Paneli</h2>
+    <ul>
+      <li><a href="Dashboard.html">Dashboard</a></li>
+      <li><a href="Students.html">Öğrenciler</a></li>
+      <li><a href="Transactions.html">İşlemler</a></li>
+      <li><a href="Surveys.html">Anketler</a></li>
+      <li><a href="maintenance-requests.html">Bakım Talepleri</a></li>
+      <li><a href="facilities.html">Ortak Alanlar</a></li>
+      <li><a href="Events.html" class="active">Etkinlikler</a></li>
+      <li><a href="Settings.html">Ayarlar</a></li>
+    </ul>
+  </div>
+
+  <div class="main-content">
+    <div class="navbar">
+      <h1>Etkinlikler</h1>
+      <button onclick="logout()">Çıkış Yap</button>
+    </div>
+
+    <div class="content">
+      <h2>Yeni Etkinlik Ekle</h2>
+      <form id="etkinlikForm">
+        <label for="etkinlikAd">Etkinlik Adı</label>
+        <input type="text" id="etkinlikAd" required>
+
+        <label for="etkinlikTarih">Tarih</label>
+        <input type="datetime-local" id="etkinlikTarih" required>
+
+        <label for="kontenjan">Kontenjan</label>
+        <input type="number" id="kontenjan" required>
+
+        <button type="submit" class="add-btn">Ekle</button>
+      </form>
+
+      <hr style="margin: 30px 0;" />
+
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+        <h2>Etkinlik Listesi</h2>
+        <div>
+          <label for="etkinlikFiltre">Filtrele:</label>
+          <select id="etkinlikFiltre" onchange="listeleEtkinlikler()">
+            <option value="tum">Tüm Etkinlikler</option>
+            <option value="aktif">Sadece Aktif</option>
+            <option value="pasif">Sadece Pasif</option>
+          </select>
+        </div>
+      </div>
+      <table class="student-table">
+        <thead>
+          <tr>
+            <th>Ad</th>
+            <th>Tarih</th>
+            <th>Kontenjan</th>
+            <th>İşlem</th>
+          </tr>
+        </thead>
+        <tbody id="etkinlikListesi">
+          <!-- Etkinlikler buraya JS ile gelecek -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+<!-- Güncelle Modal -->
+<div class="modal" id="etkinlikGuncelleModal">
+    <div class="modal-content">
+      <span class="close" id="closeGuncelleModal">&times;</span>
+      <h2>Etkinlik Güncelle</h2>
+      <form id="etkinlikGuncelleForm">
+        <label>Ad</label>
+        <input type="text" id="guncelleEtkinlikAd" required>
+  
+        <label>Tarih</label>
+        <input type="datetime-local" id="guncelleEtkinlikTarih" required>
+  
+        <label>Kontenjan</label>
+        <input type="number" id="guncelleKontenjan" required>
+  
+        <div class="checkbox-row">
+          <label for="guncelleAktifMi">Aktif mi?</label>
+          <input type="checkbox" id="guncelleAktifMi" />
+        </div>
+  
+        <button type="submit" class="detail-btn">Güncelle</button>
+      </form>
+    </div>
+  </div>
+  <!-- Katılım Görüntüleme Modalı -->
+<div class="modal" id="katilimModal">
+    <div class="modal-content">
+      <span class="close" id="closeKatilimModal">&times;</span>
+      <h2>Katılan Öğrenciler</h2>
+      <table class="student-table">
+        <thead>
+          <tr>
+            <th>Ad Soyad</th>
+          </tr>
+        </thead>
+        <tbody id="katilimListesi">
+          <!-- Katılımcılar buraya gelecek -->
+        </tbody>
+      </table>
+    </div>
+  </div>  
+
+  <script src="../js/main.js"></script>
+  <script src="../js/admin/events.js"></script>
+  <script>
+    checkAuth();
+  </script>
+</body>
+</html>

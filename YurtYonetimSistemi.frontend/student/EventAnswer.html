@@ -2,12 +2,12 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
-  <title>Öğrenci Paneli</title>
+  <title>Etkinlik Katılımı</title>
   <link rel="stylesheet" href="../css/style.css" />
   <script>
     const token = localStorage.getItem("token");
     if (!token) {
-      window.location.href = "index.html";
+      window.location.href = "../index.html";
     }
   </script>
 </head>
@@ -15,28 +15,29 @@
   <div class="sidebar">
     <h2>Öğrenci Paneli</h2>
     <ul>
-      <li><a href="StudentDashboard.html" class="active">🏠 Anasayfa</a></li>
+      <li><a href="StudentDashboard.html">🏠 Anasayfa</a></li>
       <li><a href="surveyAnswers.html">📋 Anketler</a></li>
       <li><a href="maintenanceRequestAnswer.html">🛠️ Bakım Talebi Oluştur</a></li>
-      <li><a href="eventAnswer.html">🎉 Etkinlik Katılımı</a></li>
-
+      <li><a href="eventAnswer.html" class="active">🎉 Etkinlik Katılımı</a></li>
     </ul>
   </div>
 
   <div class="main-content">
     <div class="navbar">
-      <h1>Hoş geldiniz, Öğrenci</h1>
+      <h1>Etkinlik Katılımı</h1>
       <button onclick="logout()">Çıkış Yap</button>
     </div>
 
     <div class="content">
-      <h2>Genel Bakış</h2>
-      <p>Bu sayfada öğrencinin genel özet bilgileri gösterilebilir.</p>
-      <p>Örn: Katıldığı anket sayısı, yaptığı bakım talepleri, vs.</p>
+      <h2>Aktif Etkinlikler</h2>
+      <div id="etkinlikContainer" class="anket-container">
+        <!-- Etkinlik kartları JS ile buraya gelecek -->
+      </div>
     </div>
   </div>
 
   <script src="../js/main.js"></script>
+  <script src="../js/student/eventAnswer.js"></script>
   <script>
     checkAuth();
   </script>

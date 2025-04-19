@@ -19,6 +19,9 @@ namespace YurtYonetimSistemi.API.Models
         public DbSet<Anket> Anketler { get; set; }
         public DbSet<AnketCevap> AnketCevaplar { get; set; }
         public DbSet<GirisCikis> GirisCikislar { get; set; }
+        public DbSet<Etkinlik> Etkinlikler { get; set; }
+        public DbSet<EtkinlikKatilim> EtkinlikKatilimlari { get; set; }
+
 
 
 

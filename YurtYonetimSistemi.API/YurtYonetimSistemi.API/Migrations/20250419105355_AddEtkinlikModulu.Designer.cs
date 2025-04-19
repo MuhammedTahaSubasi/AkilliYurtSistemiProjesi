@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using YurtYonetimSistemi.API.Models;
 
@@ -11,9 +12,10 @@ using YurtYonetimSistemi.API.Models;
 namespace YurtYonetimSistemi.API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250419105355_AddEtkinlikModulu")]
+    partial class AddEtkinlikModulu
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -105,12 +107,6 @@ namespace YurtYonetimSistemi.API.Migrations
                     b.Property<string>("Ad")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("AktifMi")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("Kontenjan")
-                        .HasColumnType("int");
 
                     b.Property<DateTime>("Tarih")
                         .HasColumnType("datetime2");
