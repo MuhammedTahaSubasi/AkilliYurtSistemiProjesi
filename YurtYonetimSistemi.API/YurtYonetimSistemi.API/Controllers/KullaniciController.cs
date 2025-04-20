@@ -173,6 +173,7 @@ namespace YurtYonetimSistemi.API.Controllers
 
             var kullanici = await _context.Kullanicilar
                 .Include(k => k.Rol)
+                .Include(k => k.Oda) 
                 .FirstOrDefaultAsync(k => k.KullaniciID == Guid.Parse(kullaniciId));
 
             if (kullanici == null)
@@ -186,7 +187,9 @@ namespace YurtYonetimSistemi.API.Controllers
                 kullanici.Email,
                 kullanici.TcNo,
                 kullanici.KayitTarihi,
-                Rol = kullanici.Rol?.RolAd
+                Rol = kullanici.Rol?.RolAd,
+                OdaID = kullanici.OdaID,
+                Oda = kullanici.Oda?.OdaNo 
             });
         }
 
