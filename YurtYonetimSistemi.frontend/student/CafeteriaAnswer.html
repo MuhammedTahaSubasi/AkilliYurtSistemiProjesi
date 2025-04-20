@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Yemekhane Menüsü</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <script>
+    const token = localStorage.getItem("token");
+    if (!token) {
+      window.location.href = "index.html";
+    }
+  </script>
+</head>
+<body>
+  <div class="sidebar">
+    <h2>Öğrenci Paneli</h2>
+    <ul>
+       <li><a href="StudentDashboard.html">🏠 Anasayfa</a></li>
+       <li><a href="surveyAnswers.html">📋 Anketler</a></li>
+       <li><a href="maintenanceRequestAnswer.html">🛠️ Bakım Talebi Oluştur</a></li>
+       <li><a href="eventAnswer.html">🎉 Etkinlik Katılımı</a></li>
+       <li><a href="cafeteriaAnswer.html" class="active">🍽️ Yemekhane Menüsü</a></li>
+    </ul>
+  </div>
+
+  <div class="main-content">
+    <div class="navbar">
+      <h1>Yemekhane Menüsü</h1>
+      <button onclick="logout()">Çıkış Yap</button>
+    </div>
+
+    <div class="content">
+      <div class="table-header">
+        <h2>Menüler</h2>
+      </div>
+
+      <table class="student-table">
+        <thead>
+          <tr>
+            <th>Tarih</th>
+            <th>Gün</th>
+            <th>Öğün</th>
+            <th>Yemekler</th>
+          </tr>
+        </thead>
+        <tbody id="ogrenciMenuListesi">
+          <!-- JS ile dolacak -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/student/cafeteriaAnswer.js"></script>
+  <script>checkAuth();</script>
+</body>
+</html>

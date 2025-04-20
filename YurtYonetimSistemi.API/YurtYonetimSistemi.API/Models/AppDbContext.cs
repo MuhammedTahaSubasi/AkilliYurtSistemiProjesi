@@ -21,6 +21,8 @@ namespace YurtYonetimSistemi.API.Models
         public DbSet<GirisCikis> GirisCikislar { get; set; }
         public DbSet<Etkinlik> Etkinlikler { get; set; }
         public DbSet<EtkinlikKatilim> EtkinlikKatilimlari { get; set; }
+        public DbSet<YemekhaneMenusu> YemekhaneMenusu { get; set; }
+
 
 
 

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Yemekhane Yönetimi</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <script>
+    const token = localStorage.getItem("token");
+    if (!token) {
+      window.location.href = "../index.html";
+    }
+  </script>
+</head>
+<body>
+  <div class="sidebar">
+    <h2>Yurt Paneli</h2>
+    <ul>
+      <li><a href="Dashboard.html">Dashboard</a></li>
+      <li><a href="Students.html">Öğrenciler</a></li>
+      <li><a href="Transactions.html">İşlemler</a></li>
+      <li><a href="Surveys.html">Anketler</a></li>
+      <li><a href="maintenance-requests.html">Bakım Talepleri</a></li>
+      <li><a href="facilities.html">Ortak Alanlar</a></li>
+      <li><a href="Events.html">Etkinlikler</a></li>
+      <li><a href="Rooms.html">Odalar</a></li>
+      <li><a href="Classes.html">Sınıflar</a></li>
+      <li><a href="cafeteria.html" class="active">Yemekhane Menüsü</a></li>
+      <li><a href="Settings.html">Ayarlar</a></li>
+    </ul>
+  </div>
+
+  <div class="main-content">
+    <div class="navbar">
+      <h1>Yemekhane Yönetimi</h1>
+      <button onclick="logout()">Çıkış Yap</button>
+    </div>
+
+    <div class="content">
+      <div class="table-header">
+        <h2>Günlük Menü Listesi</h2>
+        <button class="add-btn" onclick="modalAc('menuModal')">+ Yeni Menü</button>
+      </div>
+
+      <table class="student-table">
+        <thead>
+          <tr>
+            <th>Tarih</th>
+            <th>Gün</th>
+            <th>Öğün</th>
+            <th>Yemekler</th>
+            <th>İşlem</th>
+          </tr>
+        </thead>
+        <tbody id="menuListesi">
+          <!-- JS ile doldurulacak -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Menü Ekle Modal -->
+  <div class="modal" id="menuModal">
+    <div class="modal-content">
+      <span class="close" onclick="modalKapat('menuModal')">&times;</span>
+      <h2>Yeni Menü Ekle</h2>
+      <form id="menuForm">
+        <label>Tarih</label>
+        <input type="date" id="menuTarih" required />
+        <label>Öğün</label>
+        <select id="menuOgun" required>
+            <option value="" disabled selected>Öğün seç</option>
+            <option value="Kahvaltı">Kahvaltı</option>
+            <option value="Öğle">Öğle</option>
+            <option value="Akşam">Akşam</option>
+        </select>
+        <label>Yemekler</label>
+        <textarea id="menuYemekler" required></textarea>
+
+        <button type="submit" class="add-btn">Kaydet</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Güncelleme Modalı -->
+  <div class="modal" id="menuGuncelleModal">
+    <div class="modal-content">
+      <span class="close" onclick="modalKapat('menuGuncelleModal')">&times;</span>
+      <h2>Menü Güncelle</h2>
+      <form id="menuGuncelleForm">
+        <label>Tarih</label>
+        <input type="date" id="updateMenuTarih" required />
+        <label>Öğün</label>
+        <select id="updateMenuOgun" required>
+            <option value="Kahvaltı">Kahvaltı</option>
+            <option value="Öğle">Öğle</option>
+            <option value="Akşam">Akşam</option>
+        </select>
+        <br> <br>
+        <label>Yemekler</label>
+        <textarea id="updateMenuYemekler" required></textarea>
+
+        <button type="submit" class="detail-btn">Güncelle</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/admin/cafeteria.js"></script>
+  <script>
+    checkAuth();
+  </script>
+</body>
+</html>

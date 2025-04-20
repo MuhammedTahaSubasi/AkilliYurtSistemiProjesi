@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using YurtYonetimSistemi.API.Models;
 
@@ -11,9 +12,10 @@ using YurtYonetimSistemi.API.Models;
 namespace YurtYonetimSistemi.API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250420123341_CreateYemekhaneMenusu")]
+    partial class CreateYemekhaneMenusu
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -298,10 +300,6 @@ namespace YurtYonetimSistemi.API.Migrations
                     b.Property<Guid>("MenuID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Ogun")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("OlusturmaTarihi")
                         .HasColumnType("datetime2");
