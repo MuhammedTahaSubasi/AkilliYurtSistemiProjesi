@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using YurtYonetimSistemi.API.Models;
 
@@ -11,9 +12,10 @@ using YurtYonetimSistemi.API.Models;
 namespace YurtYonetimSistemi.API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250421121124_KutuphaneYeniYapi")]
+    partial class KutuphaneYeniYapi
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -253,11 +255,14 @@ namespace YurtYonetimSistemi.API.Migrations
                     b.Property<Guid>("KutuphanePlanID")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("PlanKutuphanePlanID")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("KatilimID");
 
                     b.HasIndex("KullaniciID");
 
-                    b.HasIndex("KutuphanePlanID");
+                    b.HasIndex("PlanKutuphanePlanID");
 
                     b.ToTable("KutuphaneKatilimlar");
                 });
@@ -281,9 +286,6 @@ namespace YurtYonetimSistemi.API.Migrations
                     b.Property<string>("SaatAraligi")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Tarih")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("KutuphanePlanID");
 
@@ -530,9 +532,7 @@ namespace YurtYonetimSistemi.API.Migrations
 
                     b.HasOne("YurtYonetimSistemi.API.Models.KutuphanePlani", "Plan")
                         .WithMany("Katilimlar")
-                        .HasForeignKey("KutuphanePlanID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PlanKutuphanePlanID");
 
                     b.Navigation("Kullanici");
 

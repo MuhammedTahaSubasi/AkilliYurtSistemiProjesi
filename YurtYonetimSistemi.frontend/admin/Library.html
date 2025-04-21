@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
-  <title>Sınıf Yönetimi</title>
+  <title>Kütüphane Şubeleri</title>
   <link rel="stylesheet" href="../css/style.css" />
   <script>
     const token = localStorage.getItem("token");
@@ -23,85 +23,77 @@
       <li><a href="facilities.html">Ortak Alanlar</a></li>
       <li><a href="Events.html">Etkinlikler</a></li>
       <li><a href="Rooms.html">Odalar</a></li>
-      <li><a href="Classes.html" class="active">Sınıflar</a></li>
+      <li><a href="Classes.html">Sınıflar</a></li>
       <li><a href="cafeteria.html">Yemekhane Menüsü</a></li>
       <li><a href="laundry.html">Çamaşırhane Planı</a></li>
-      <li><a href="library.html">Kütüphane</a></li>
+      <li><a href="library.html" class="active">Kütüphane</a></li>
       <li><a href="Settings.html">Ayarlar</a></li>
     </ul>
   </div>
 
   <div class="main-content">
     <div class="navbar">
-      <h1>Sınıf Yönetimi</h1>
+      <h1>Kütüphane Şubeleri</h1>
       <button onclick="logout()">Çıkış Yap</button>
     </div>
 
     <div class="content">
       <div class="table-header">
-        <h2>Sınıf Listesi</h2>
-        <button class="add-btn" onclick="modalAc('sinifModal')">+ Yeni Sınıf</button>
+        <h2>Şube Listesi</h2>
+        <button class="add-btn" onclick="modalAc('subeModal')">+ Yeni Şube</button>
       </div>
 
       <table class="student-table">
         <thead>
           <tr>
-            <th>Sınıf Adı</th>
-            <th>Kat No</th>
+            <th>Ad</th>
             <th>Kapasite</th>
             <th>İşlem</th>
           </tr>
         </thead>
-        <tbody id="sinifListesi">
-          <!-- Sınıflar buraya gelecek -->
+        <tbody id="subeListesi">
+          <!-- Şubeler JS ile gelecek -->
         </tbody>
       </table>
     </div>
   </div>
 
-  <!-- Sınıf Ekle Modal -->
-  <div class="modal" id="sinifModal">
+  <!-- Yeni Şube Modal -->
+  <div class="modal" id="subeModal">
     <div class="modal-content">
-      <span class="close" onclick="modalKapat('sinifModal')">&times;</span>
-      <h2>Yeni Sınıf Ekle</h2>
-      <form id="sinifForm">
-        <label>Sınıf Adı</label>
-        <input type="text" id="sinifAd" required />
-
-        <label>Kat No</label>
-       <input type="number" id="katNo" required />
+      <span class="close" onclick="modalKapat('subeModal')">&times;</span>
+      <h2>Yeni Şube Ekle</h2>
+      <form id="subeForm">
+        <label>Ad</label>
+        <input type="text" id="subeAd" required />
 
         <label>Kapasite</label>
-        <input type="number" id="kapasite" required />
+        <input type="number" id="subeKapasite" required />
 
         <button type="submit" class="add-btn">Kaydet</button>
       </form>
     </div>
   </div>
 
-  <!-- Güncelleme Modalı -->
-<div class="modal" id="sinifGuncelleModal">
-  <div class="modal-content">
-    <span class="close" onclick="modalKapat('sinifGuncelleModal')">&times;</span>
-    <h2>Sınıf Güncelle</h2>
-    <form id="sinifGuncelleForm">
-      <label>Sınıf Adı</label>
-      <input type="text" id="updateSinifAd" required />
+  <!-- Şube Güncelleme Modal -->
+  <div class="modal" id="subeGuncelleModal">
+    <div class="modal-content">
+      <span class="close" onclick="modalKapat('subeGuncelleModal')">&times;</span>
+      <h2>Şube Güncelle</h2>
+      <form id="subeGuncelleForm">
+        <label>Ad</label>
+        <input type="text" id="guncelleAd" required />
 
-      <label>Kat No</label>
-      <input type="number" id="updateKatNo" required />
+        <label>Kapasite</label>
+        <input type="number" id="guncelleKapasite" required />
 
-      <label>Kapasite</label>
-      <input type="number" id="updateKapasite" required />
-
-      <button type="submit" class="detail-btn">Güncelle</button>
-    </form>
+        <button type="submit" class="detail-btn">Güncelle</button>
+      </form>
+    </div>
   </div>
-</div>
-
 
   <script src="../js/main.js"></script>
-  <script src="../js/admin/classes.js"></script>
+  <script src="../js/admin/library.js"></script>
   <script>
     checkAuth();
   </script>

@@ -2,13 +2,12 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
-  <title>Çamaşırhane Planım</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kütüphane Katılım</title>
   <link rel="stylesheet" href="../css/style.css" />
   <script>
     const token = localStorage.getItem("token");
-    if (!token) {
-      window.location.href = "../index.html";
-    }
+    if (!token) window.location.href = "index.html";
   </script>
 </head>
 <body>
@@ -20,39 +19,48 @@
       <li><a href="maintenanceRequestAnswer.html">🛠️ Bakım Talebi Oluştur</a></li>
       <li><a href="eventAnswer.html">🎉 Etkinlik Katılımı</a></li>
       <li><a href="cafeteriaAnswer.html">🍽️ Yemekhane Menüsü</a></li>
-      <li><a href="laundryAnswer.html" class="active">🧺 Çamaşırhane Planı</a></li>
-      <li><a href="libraryAnswer.html">📚 Kütüphane Katılım</a></li>
+      <li><a href="laundryAnswer.html">🧺 Çamaşırhane Planı</a></li>
+      <li><a href="libraryAnswer.html" class="active">📚 Kütüphane Katılım</a></li>
     </ul>
   </div>
 
   <div class="main-content">
     <div class="navbar">
-      <h1>Çamaşırhane Planım</h1>
+      <h1>Kütüphane Seansları</h1>
       <button onclick="logout()">Çıkış Yap</button>
     </div>
 
     <div class="content">
-      <div class="table-header">
-        <h2 id="odaBaslik">Odanız İçin Planlanan Saatler</h2>
+      <h2>Haftalık Seans Listesi</h2>
+      <p>Katılmak istediğiniz kütüphane seanslarını seçebilirsiniz.</p>
+      <div class="filter-container">
+        <label for="kutuphaneSec">Kütüphane Seç:</label>
+        <select id="kutuphaneSec">
+          <!-- Kütüphaneler JS ile doldurulacak -->
+        </select>
       </div>
+      
 
       <table class="student-table">
         <thead>
           <tr>
+            <th>Tarih</th>
             <th>Gün</th>
             <th>Saat Aralığı</th>
-            <th>Açıklama</th>
+            <th>İşlem</th>
           </tr>
         </thead>
-        <tbody id="ogrenciLaundryListesi">
-          <!-- JS ile dolacak -->
+        <tbody id="planlarTablo">
+          <!-- JS ile doldurulacak -->
         </tbody>
       </table>
     </div>
   </div>
 
   <script src="../js/main.js"></script>
-  <script src="../js/student/laundryAnswer.js"></script>
-  <script>checkAuth();</script>
+  <script src="../js/student/libraryAnswer.js"></script>
+  <script>
+    checkAuth();
+  </script>
 </body>
 </html>

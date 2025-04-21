@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using YurtYonetimSistemi.API.Models;
 
@@ -11,9 +12,10 @@ using YurtYonetimSistemi.API.Models;
 namespace YurtYonetimSistemi.API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250421103202_KutuphaneModulu")]
+    partial class KutuphaneModulu
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -241,30 +243,9 @@ namespace YurtYonetimSistemi.API.Migrations
                     b.ToTable("Kullanicilar");
                 });
 
-            modelBuilder.Entity("YurtYonetimSistemi.API.Models.KutuphaneKatilim", b =>
+            modelBuilder.Entity("YurtYonetimSistemi.API.Models.Kutuphane", b =>
                 {
-                    b.Property<Guid>("KatilimID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("KullaniciID")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("KutuphanePlanID")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("KatilimID");
-
-                    b.HasIndex("KullaniciID");
-
-                    b.HasIndex("KutuphanePlanID");
-
-                    b.ToTable("KutuphaneKatilimlar");
-                });
-
-            modelBuilder.Entity("YurtYonetimSistemi.API.Models.KutuphanePlani", b =>
-                {
-                    b.Property<Guid>("KutuphanePlanID")
+                    b.Property<Guid>("KutuphaneID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -275,39 +256,37 @@ namespace YurtYonetimSistemi.API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("KutuphaneSubeID")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("Kapasite")
+                        .HasColumnType("int");
 
                     b.Property<string>("SaatAraligi")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("Tarih")
-                        .HasColumnType("datetime2");
+                    b.HasKey("KutuphaneID");
 
-                    b.HasKey("KutuphanePlanID");
-
-                    b.HasIndex("KutuphaneSubeID");
-
-                    b.ToTable("KutuphanePlanlari");
+                    b.ToTable("Kutuphaneler");
                 });
 
-            modelBuilder.Entity("YurtYonetimSistemi.API.Models.KutuphaneSubesi", b =>
+            modelBuilder.Entity("YurtYonetimSistemi.API.Models.KutuphaneKatilim", b =>
                 {
-                    b.Property<Guid>("KutuphaneSubeID")
+                    b.Property<Guid>("KatilimID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Ad")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("KullaniciID")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("Kapasite")
-                        .HasColumnType("int");
+                    b.Property<Guid>("KutuphaneID")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("KutuphaneSubeID");
+                    b.HasKey("KatilimID");
 
-                    b.ToTable("KutuphaneSubeleri");
+                    b.HasIndex("KullaniciID");
+
+                    b.HasIndex("KutuphaneID");
+
+                    b.ToTable("KutuphaneKatilimlar");
                 });
 
             modelBuilder.Entity("YurtYonetimSistemi.API.Models.Oda", b =>
@@ -528,26 +507,15 @@ namespace YurtYonetimSistemi.API.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("YurtYonetimSistemi.API.Models.KutuphanePlani", "Plan")
+                    b.HasOne("YurtYonetimSistemi.API.Models.Kutuphane", "Kutuphane")
                         .WithMany("Katilimlar")
-                        .HasForeignKey("KutuphanePlanID")
+                        .HasForeignKey("KutuphaneID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Kullanici");
 
-                    b.Navigation("Plan");
-                });
-
-            modelBuilder.Entity("YurtYonetimSistemi.API.Models.KutuphanePlani", b =>
-                {
-                    b.HasOne("YurtYonetimSistemi.API.Models.KutuphaneSubesi", "KutuphaneSubesi")
-                        .WithMany("Planlar")
-                        .HasForeignKey("KutuphaneSubeID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("KutuphaneSubesi");
+                    b.Navigation("Kutuphane");
                 });
 
             modelBuilder.Entity("YurtYonetimSistemi.API.Models.RolYetki", b =>
@@ -579,14 +547,9 @@ namespace YurtYonetimSistemi.API.Migrations
                     b.Navigation("Katilimlar");
                 });
 
-            modelBuilder.Entity("YurtYonetimSistemi.API.Models.KutuphanePlani", b =>
+            modelBuilder.Entity("YurtYonetimSistemi.API.Models.Kutuphane", b =>
                 {
                     b.Navigation("Katilimlar");
-                });
-
-            modelBuilder.Entity("YurtYonetimSistemi.API.Models.KutuphaneSubesi", b =>
-                {
-                    b.Navigation("Planlar");
                 });
 
             modelBuilder.Entity("YurtYonetimSistemi.API.Models.Oda", b =>

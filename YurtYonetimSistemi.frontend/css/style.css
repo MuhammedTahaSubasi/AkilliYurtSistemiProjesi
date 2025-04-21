@@ -287,5 +287,96 @@ body {
     margin: 0;
     vertical-align: middle;
   }
-  
+  /* --- Kütüphane Planı Sayfası Ek Stiller --- */
+
+.checkbox-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: 10px;
+  max-width: 100%;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+}
+
+.aktif-plan {
+  background-color: rgba(144, 238, 144, 0.2);
+}
+
+.pasif-plan {
+  background-color: rgba(211, 211, 211, 0.2);
+  color: #777;
+}
+
+.plan-tip-btn {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  margin: 5px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.uyari-mesaj {
+  color: red;
+  font-size: 0.9em;
+  margin-top: 5px;
+  display: none;
+}
+
+/* Responsive düzenlemeler */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 150px;
+  }
+  .main-content {
+    width: calc(100% - 150px);
+  }
+  .table-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .checkbox-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .sidebar {
+    width: 100px;
+  }
+  .main-content {
+    width: calc(100% - 100px);
+  }
+  .checkbox-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Buton grupları için düzenleme */
+.button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+/* Filtre alanı düzenlemesi */
+.filter-container {
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.disabled-btn {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
+}
+
+/*--------------------------------------------------
     
