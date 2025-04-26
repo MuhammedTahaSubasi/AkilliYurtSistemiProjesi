@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
-  <title>Çamaşırhane Planım</title>
+  <title>Ödeme Takibim</title>
   <link rel="stylesheet" href="../css/style.css" />
   <script>
     const token = localStorage.getItem("token");
@@ -20,32 +20,41 @@
       <li><a href="maintenanceRequestAnswer.html">🛠️ Bakım Talebi Oluştur</a></li>
       <li><a href="eventAnswer.html">🎉 Etkinlik Katılımı</a></li>
       <li><a href="cafeteriaAnswer.html">🍽️ Yemekhane Menüsü</a></li>
-      <li><a href="laundryAnswer.html" class="active">🧺 Çamaşırhane Planı</a></li>
+      <li><a href="laundryAnswer.html">🧺 Çamaşırhane Planı</a></li>
       <li><a href="libraryAnswer.html">📚 Kütüphane Katılım</a></li>
-      <li><a href="paymentAnswer.html">💳 Ödeme Takibim</a></li>
+      <li><a href="paymentAnswer.html" class="active">💳 Ödeme Takibim</a></li>
     </ul>
   </div>
 
   <div class="main-content">
     <div class="navbar">
-      <h1>Çamaşırhane Planım</h1>
+      <h1>Ödeme Takibim</h1>
       <button onclick="logout()">Çıkış Yap</button>
     </div>
-
+    <div style="margin-bottom: 20px;">
+        <label for="filterOdeme">Ödeme Durumu:</label>
+        <select id="filterOdeme" onchange="listeleOgrenciOdemeler()">
+          <option value="aktif">Aktif Ödemeler</option>
+          <option value="gecmis">Geçmiş Ödemeler</option>
+          <option value="tum">Tüm Ödemeler</option>
+        </select>
+      </div>
+      
     <div class="content">
       <div class="table-header">
-        <h2 id="odaBaslik">Odanız İçin Planlanan Saatler</h2>
+        <h2>Ödeme Bilgileriniz</h2>
       </div>
 
       <table class="student-table">
         <thead>
           <tr>
-            <th>Gün</th>
-            <th>Saat Aralığı</th>
-            <th>Açıklama</th>
+            <th>Tutar (₺)</th>
+            <th>Son Ödeme Tarihi</th>
+            <th>Durum</th>
+            <th>Uyarı</th>
           </tr>
         </thead>
-        <tbody id="ogrenciLaundryListesi">
+        <tbody id="ogrenciOdemeListesi">
           <!-- JS ile dolacak -->
         </tbody>
       </table>
@@ -53,7 +62,7 @@
   </div>
 
   <script src="../js/main.js"></script>
-  <script src="../js/student/laundryAnswer.js"></script>
+  <script src="../js/student/paymentAnswer.js"></script> <!-- Yeni js dosyamız -->
   <script>checkAuth();</script>
 </body>
 </html>
