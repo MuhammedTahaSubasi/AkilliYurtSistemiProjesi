@@ -1,11 +1,71 @@
 {
   "Version": 1,
-  "Hash": "UVHDuobYB14xsrQWN45IZYA+kJA9z6r0vRrMMdFWF4o=",
+  "Hash": "iJH3/jokiKAJuJnnqq2tfyhj37BwrA0lzJst3PiCQFE=",
   "Source": "YurtYonetimSistemi.API",
   "BasePath": "_content/YurtYonetimSistemi.API",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "YurtYonetimSistemi.API\\wwwroot",
+      "Source": "YurtYonetimSistemi.API",
+      "ContentRoot": "C:\\Users\\hafiz\\source\\repos\\AkilliYurtSistemiProjesi\\YurtYonetimSistemi.API\\YurtYonetimSistemi.API\\wwwroot\\",
+      "BasePath": "_content/YurtYonetimSistemi.API",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\hafiz\\source\\repos\\AkilliYurtSistemiProjesi\\YurtYonetimSistemi.API\\YurtYonetimSistemi.API\\wwwroot\\uploads\\kazim__karabekir_12569874589_AdliSicilBelgesi.pdf",
+      "SourceId": "YurtYonetimSistemi.API",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\hafiz\\source\\repos\\AkilliYurtSistemiProjesi\\YurtYonetimSistemi.API\\YurtYonetimSistemi.API\\wwwroot\\",
+      "BasePath": "_content/YurtYonetimSistemi.API",
+      "RelativePath": "uploads/kazim__karabekir_12569874589_AdliSicilBelgesi.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\kazim__karabekir_12569874589_AdliSicilBelgesi.pdf"
+    },
+    {
+      "Identity": "C:\\Users\\hafiz\\source\\repos\\AkilliYurtSistemiProjesi\\YurtYonetimSistemi.API\\YurtYonetimSistemi.API\\wwwroot\\uploads\\kazim__karabekir_12569874589_OgrenciBelgesi.pdf",
+      "SourceId": "YurtYonetimSistemi.API",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\hafiz\\source\\repos\\AkilliYurtSistemiProjesi\\YurtYonetimSistemi.API\\YurtYonetimSistemi.API\\wwwroot\\",
+      "BasePath": "_content/YurtYonetimSistemi.API",
+      "RelativePath": "uploads/kazim__karabekir_12569874589_OgrenciBelgesi.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\kazim__karabekir_12569874589_OgrenciBelgesi.pdf"
+    },
+    {
+      "Identity": "C:\\Users\\hafiz\\source\\repos\\AkilliYurtSistemiProjesi\\YurtYonetimSistemi.API\\YurtYonetimSistemi.API\\wwwroot\\uploads\\readme.txt",
+      "SourceId": "YurtYonetimSistemi.API",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\hafiz\\source\\repos\\AkilliYurtSistemiProjesi\\YurtYonetimSistemi.API\\YurtYonetimSistemi.API\\wwwroot\\",
+      "BasePath": "_content/YurtYonetimSistemi.API",
+      "RelativePath": "uploads/readme.txt",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\readme.txt"
+    }
+  ]
 }

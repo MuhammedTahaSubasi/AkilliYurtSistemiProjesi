@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Başvurular</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <script>
+    const token = localStorage.getItem("token");
+    if (!token) {
+      window.location.href = "../index.html"; // login değilse yönlendir
+    }
+  </script>
+</head>
+<body>
+  <div class="sidebar">
+    <h2>Yurt Paneli</h2>
+    <ul>
+      <li><a href="Dashboard.html">Dashboard</a></li>
+      <li><a href="Students.html">Öğrenciler</a></li>
+      <li><a href="Transactions.html">İşlemler</a></li>
+      <li><a href="Surveys.html">Anketler</a></li>
+      <li><a href="maintenance-requests.html">Bakım Talepleri</a></li>
+      <li><a href="Events.html">Etkinlikler</a></li>
+      <li><a href="Rooms.html">Odalar</a></li>
+      <li><a href="Classes.html">Sınıflar</a></li>
+      <li><a href="cafeteria.html">Yemekhane Menüsü</a></li>
+      <li><a href="laundry.html">Çamaşırhane Planı</a></li>
+      <li><a href="library.html">Kütüphane</a></li>
+      <li><a href="payments.html">Ödeme Takibi</a></li>
+      <li><a href="applications.html" class="active">Başvurular</a></li> 
+      <li><a href="Settings.html">Ayarlar</a></li>
+    </ul>
+  </div>
+
+  <div class="main-content">
+    <div class="navbar">
+      <h1>Başvuru Listesi</h1>
+      <button onclick="logout()">Çıkış Yap</button>
+    </div>
+
+    <div class="content">
+      <div class="table-header">
+        <h2>Başvurular</h2>
+        <select id="filterDurum" onchange="listeleBasvurular()">
+            <option value="aktif">Aktif Başvurular</option>
+            <option value="pasif">Pasif Başvurular</option>
+            <option value="tum">Tüm Başvurular</option>
+          </select>
+      </div>
+
+      <table class="student-table">
+        <thead>
+            <tr>
+              <th>Ad Soyad</th>
+              <th>TC No</th>
+              <th>Telefon</th>
+              <th>Email</th>
+              <th>Okul</th>
+              <th>Bölüm</th>
+              <th>Sınıf</th>
+              <th>Başvuru Tarihi</th>
+              <th>Durum</th>
+              <th>Öğrenci Belgesi</th>
+              <th>Adli Sicil Belgesi</th>
+              <th>İşlem</th>
+            </tr>
+          </thead>
+          
+        <tbody id="basvuruListesi">
+          <!-- JS ile dolacak -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="modal" id="onayModal">
+    <div class="modal-content">
+      <span class="close" onclick="modalKapat('onayModal')">&times;</span>
+      <h2>Başvuru Onayla</h2>
+      <form id="onayForm">
+        <label>Ad</label>
+        <input type="text" id="inputAd" required />
+  
+        <label>Soyad</label>
+        <input type="text" id="inputSoyad" required />
+  
+        <label>Email</label>
+        <input type="email" id="inputEmail" required readonly />
+  
+        <label>Şifre</label>
+        <input type="text" id="inputSifre" value="123456" required readonly />
+  
+        <label>TC No</label>
+        <input type="text" id="inputTcNo" required readonly />
+  
+        <label>Telefon</label>
+        <input type="text" id="inputTelefon" required readonly />
+  
+        <label>Oda</label>
+        <select id="inputOda"></select>
+  
+        <label>Sınıf</label>
+        <select id="inputSinif"></select>
+  
+        <button type="submit" class="add-btn">Onayla ve Kullanıcı Oluştur</button>
+      </form>
+    </div>
+  </div>    
+  
+  <script src="../js/main.js"></script>
+  <script src="../js/admin/applications.js"></script> 
+  <script>checkAuth();</script>
+</body>
+</html>

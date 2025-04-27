@@ -27,6 +27,7 @@ namespace YurtYonetimSistemi.API.Models
         public DbSet<KutuphanePlani> KutuphanePlanlari { get; set; }
         public DbSet<KutuphaneKatilim> KutuphaneKatilimlar { get; set; }
         public DbSet<Odeme> Odemeler { get; set; }
+        public DbSet<Basvuru> Basvurular { get; set; }
 
 
 

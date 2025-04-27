@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8" />
+    <title>Yurt Başvuru Formu</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+    <div class="container-flex">
+        <!-- Başvuru Formu -->
+        <div class="login-container">
+            <h1>Yurt Başvuru Formu</h1>
+            <form id="basvuruForm" enctype="multipart/form-data">
+                <input type="text" id="ad" placeholder="Ad" required />
+                <input type="text" id="soyad" placeholder="Soyad" required />
+                <input type="text" id="tcNo" placeholder="TC Kimlik No" required />
+                <input type="email" id="email" placeholder="Email" required />
+                <input type="date" id="dogumTarihi" placeholder="Doğum Tarihi" required />
+                <input type="text" id="telefon" placeholder="Telefon" required />
+                <input type="text" id="okul" placeholder="Okul" required />
+                <input type="text" id="sinif" placeholder="Sınıf" required />
+                <input type="text" id="bolum" placeholder="Bölüm" required />
+
+                <label>Öğrenci Belgesi (PDF veya JPG)</label>
+                <input type="file" id="ogrenciBelgesi" accept=".pdf,.jpg,.jpeg,.png" />
+
+                <label>Adli Sicil Belgesi (PDF veya JPG)</label>
+                <input type="file" id="adliSicilBelgesi" accept=".pdf,.jpg,.jpeg,.png" />
+
+                <button type="submit" class="add-btn">Başvuruyu Gönder</button>
+            </form>
+        </div>
+        <!-- Başvuru Sorgulama Formu -->
+        <div class="login-container">
+            <h2>Başvuru Durumu Sorgulama</h2>
+            <form id="sorgulaForm">
+                <input type="text" id="sorgulaKodu" placeholder="Başvuru Kodunuz" required />
+                <button type="submit" class="detail-btn">Durumu Sorgula</button>
+            </form>
+            <div id="sorguSonucu" style="margin-top: 20px; font-weight: bold;"></div>
+        </div>
+    </div>
+
+    <script src="js/application.js"></script> 
+</body>
+</html>

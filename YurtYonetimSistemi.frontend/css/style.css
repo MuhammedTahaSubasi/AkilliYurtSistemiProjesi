@@ -379,4 +379,13 @@ body {
 }
 
 /*--------------------------------------------------
+    /başvuru application */
+    .container-flex {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 30px; /* Aralarındaki boşluk */
+      flex-wrap: wrap; /* Mobilde alt alta düşmesi için */
+  }
+  
     
