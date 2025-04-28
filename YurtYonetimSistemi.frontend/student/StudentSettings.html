@@ -3,45 +3,40 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Ayarlar</title>
+  <title>Öğrenci Ayarlar</title>
   <link rel="stylesheet" href="../css/style.css" />
   <script>
     const token = localStorage.getItem("token");
     if (!token) {
-      window.location.href = "index.html";
+      window.location.href = "index.html"; 
     }
   </script>
 </head>
 <body>
   <div class="sidebar">
-    <h2>Yurt Paneli</h2>
+    <h2>Öğrenci Paneli</h2>
     <ul>
-      <li><a href="Dashboard.html">Dashboard</a></li>
-    <li><a href="Students.html">Öğrenciler</a></li>
-    <li><a href="Transactions.html">İşlemler</a></li>
-    <li><a href="Surveys.html">Anketler</a></li>
-    <li><a href="maintenance-requests.html">Bakım Talepleri</a></li>
-    <li><a href="Events.html">Etkinlikler</a></li>
-    <li><a href="Rooms.html">Odalar</a></li>
-    <li><a href="Classes.html">Sınıflar</a></li>
-    <li><a href="cafeteria.html">Yemekhane Menüsü</a></li>
-    <li><a href="laundry.html">Çamaşırhane Planı</a></li>
-    <li><a href="library.html">Kütüphane</a></li>
-    <li><a href="payments.html">Ödeme Takibi</a></li>
-    <li><a href="applications.html">Başvurular</a></li>
-    <li><a href="Settings.html" class="active">Ayarlar</a></li> 
+      <li><a href="StudentDashboard.html">🏠 Anasayfa</a></li>
+      <li><a href="surveyAnswers.html">📋 Anketler</a></li>
+      <li><a href="maintenanceRequestAnswer.html">🛠️ Bakım Talebi Oluştur</a></li>
+      <li><a href="eventAnswer.html">🎉 Etkinlik Katılımı</a></li>
+      <li><a href="cafeteriaAnswer.html">🍽️ Yemekhane Menüsü</a></li>
+      <li><a href="laundryAnswer.html">🧺 Çamaşırhane Planı</a></li>
+      <li><a href="libraryAnswer.html">📚 Kütüphane Katılım</a></li>
+      <li><a href="paymentAnswer.html">💳 Ödeme Takibim</a></li>
+      <li><a href="studentSettings.html" class="active">⚙️ Ayarlar</a></li> 
     </ul>
   </div>
 
   <div class="main-content">
     <div class="navbar">
       <h1>Ayarlar</h1>
-      <button>Çıkış Yap</button>
+      <button onclick="logout()">Çıkış Yap</button>
     </div>
 
     <div class="content">
-      <!--  Kullanıcı Bilgileri -->
-      <h2>🧑‍💼 Bilgilerim</h2>
+      <!-- Bilgilerim Bölümü -->
+      <h2>🧑‍🎓 Bilgilerim</h2>
       <form id="profile-form" class="settings-form">
         <label>Ad</label>
         <input type="text" id="ad" disabled />
@@ -56,7 +51,7 @@
         <input type="text" id="telefon" disabled />
       </form>
 
-      <!-- Şifre Değiştir -->
+      <!-- Şifre Değiştirme Bölümü -->
       <h2>🔐 Şifre Değiştir</h2>
       <form id="password-form" class="settings-form">
         <label>Mevcut Şifre</label>
@@ -74,7 +69,7 @@
   </div>
 
   <script src="../js/main.js"></script>
-  <script src="../js/admin/settings.js"></script> 
+  <script src="../js/student/studentSettings.js"></script> 
   <script>
     checkAuth();
   </script>

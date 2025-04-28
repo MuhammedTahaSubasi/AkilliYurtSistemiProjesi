@@ -163,6 +163,37 @@ namespace YurtYonetimSistemi.API.Controllers
             return _context.Kullanicilar.Any(e => e.KullaniciID == id);
         }
 
+        // PUT: api/Kullanici/sifre-degistir
+        [HttpPut("sifre-degistir")]
+        public async Task<IActionResult> ChangePassword([FromBody] SifreGuncelleDto request)
+        {
+            var kullaniciId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (kullaniciId == null)
+                return Unauthorized();
+
+            var kullanici = await _context.Kullanicilar.FindAsync(Guid.Parse(kullaniciId));
+            if (kullanici == null)
+                return NotFound();
+
+            // Eski şifre doğrulama
+            if (!BCrypt.Net.BCrypt.Verify(request.MevcutSifre, kullanici.Sifre))
+            {
+                return BadRequest("Mevcut şifre yanlış.");
+            }
+
+            // Yeni şifre uzunluk kontrolü
+            if (request.YeniSifre.Length < 6)
+            {
+                return BadRequest("Yeni şifre en az 6 karakter olmalıdır.");
+            }
+
+            // Şifreyi hashle ve güncelle
+            kullanici.Sifre = BCrypt.Net.BCrypt.HashPassword(request.YeniSifre);
+            await _context.SaveChangesAsync();
+
+            return Ok("Şifre başarıyla değiştirildi.");
+        }
+
         //GET ME 
         [HttpGet("me")]
         public async Task<IActionResult> GetCurrentUser()
@@ -186,6 +217,7 @@ namespace YurtYonetimSistemi.API.Controllers
                 kullanici.Soyad,
                 kullanici.Email,
                 kullanici.TcNo,
+                kullanici.Telefon,
                 kullanici.KayitTarihi,
                 Rol = kullanici.Rol?.RolAd,
                 OdaID = kullanici.OdaID,

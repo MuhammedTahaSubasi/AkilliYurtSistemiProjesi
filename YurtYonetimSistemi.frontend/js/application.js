@@ -34,12 +34,19 @@ document.getElementById("basvuruForm").addEventListener("submit", function (e) {
     .then(data => {
         alert("✅ Başvurunuz başarıyla alınmıştır!\n\n🔑 Başvuru Kodunuz: " + data.basvuruKodu + "\n\n❗ Lütfen bu kodu kaydedin. Başvurunuzu takip etmek için bu kod gereklidir!");
         document.getElementById("basvuruForm").reset();
+        
+        // Eğer yüklenen dosya linklerine frontend'den erişmeniz gerekiyorsa
+        if (data.ogrenciBelgesiYolu) {
+            // Dosya yolunu saklayabilir veya gösterebilirsiniz
+            console.log("Öğrenci belgesi: https://localhost:7107" + data.ogrenciBelgesiYolu);
+        }
     })    
     .catch(err => {
         console.error("Başvuru gönderilemedi:", err);
         alert("Başvurunuz alınırken bir hata oluştu: " + err.message);
     });
 });
+
 //sorgulama kodu gönder
 document.getElementById("sorgulaForm").addEventListener("submit", function (e) {
     e.preventDefault();

@@ -31,24 +31,24 @@ namespace YurtYonetimSistemi.API.Controllers
                 .Replace("Ö", "O")
                 .Replace("Ç", "C")
                 .Replace("Ğ", "G")
-                .Replace(" ", "_"); // Boşlukları da _ yapıyoruz
+                .Replace(" ", "_"); 
         }
 
-        //POST
+        // POST
         [HttpPost]
         public async Task<IActionResult> BasvuruEkle([FromForm] BasvuruDto dto)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            //  1. Dosya yolları için upload klasörü
+            // 1. Dosya yolları için upload klasörü
             var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads");
             if (!Directory.Exists(uploadsFolder))
             {
                 Directory.CreateDirectory(uploadsFolder);
             }
 
-            //  2. Öğrenci Belgesi Yükleme
+            // 2. Öğrenci Belgesi Yükleme
             string ogrenciBelgesiPath = null;
             if (dto.OgrenciBelgesi != null)
             {
@@ -58,10 +58,10 @@ namespace YurtYonetimSistemi.API.Controllers
                 {
                     await dto.OgrenciBelgesi.CopyToAsync(stream);
                 }
-                ogrenciBelgesiPath = $"uploads/{ogrenciBelgesiFileName}";
+                ogrenciBelgesiPath = "/uploads/" + ogrenciBelgesiFileName; // BAŞINA SLASH (/) KOYDUK
             }
 
-            //  3. Adli Sicil Belgesi Yükleme
+            // 3. Adli Sicil Belgesi Yükleme
             string adliSicilBelgesiPath = null;
             if (dto.AdliSicilBelgesi != null)
             {
@@ -71,14 +71,14 @@ namespace YurtYonetimSistemi.API.Controllers
                 {
                     await dto.AdliSicilBelgesi.CopyToAsync(stream);
                 }
-                adliSicilBelgesiPath = $"uploads/{adliSicilBelgesiFileName}";
+                adliSicilBelgesiPath = "/uploads/" + adliSicilBelgesiFileName; // BAŞINA SLASH (/) KOYDUK
             }
 
-            //  4. Başvuru Kodu Üretimi
+            // 4. Başvuru Kodu Üretimi
             var random = new Random();
             var basvuruKodu = $"BASV-{random.Next(100000, 999999)}";
 
-            //  5. Başvuru Nesnesi Oluşturma
+            // 5. Başvuru Nesnesi Oluşturma
             var basvuru = new Basvuru
             {
                 BasvuruID = Guid.NewGuid(),
@@ -98,16 +98,20 @@ namespace YurtYonetimSistemi.API.Controllers
                 Durum = "Bekliyor"
             };
 
-            //  6. Veritabanına Kaydetme
+            // 6. Veritabanına Kaydetme
             _context.Basvurular.Add(basvuru);
             await _context.SaveChangesAsync();
 
+            // 7. Cevap Olarak dosya yolları da dön
             return Ok(new
             {
                 message = "Başvuru başarıyla oluşturuldu.",
-                basvuruKodu = basvuru.BasvuruKodu
+                basvuruKodu = basvuru.BasvuruKodu,
+                ogrenciBelgesiYolu = basvuru.OgrenciBelgesiPath,
+                adliSicilBelgesiYolu = basvuru.AdliSicilBelgesiPath
             });
         }
+
         //GET
         [Authorize]
         [HttpGet]
