@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Yönetim Paneli</title>
   <link rel="stylesheet" href="../css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> 
   <script>
     const token = localStorage.getItem("token");
     if (!token) {
@@ -42,10 +43,65 @@
     <div class="content">
       <h2>Genel Bakış</h2>
       <p>Burada yurt sistemine dair özet bilgiler yer alacak.</p>
+    
+      <!-- 3x2 Grafik Grid Sistemi -->
+      <div style="
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        margin-top: 20px;
+      ">
+    
+        <!-- Öğrenci Sayısı -->
+        <div style="background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+          <h3>Öğrenci Sayısı</h3>
+          <canvas id="ogrenciChart" height="150"></canvas>
+        </div>
+    
+        <!-- Oda Doluluk -->
+        <div style="background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+          <h3>Oda Doluluk</h3>
+          <canvas id="odaChart" height="150"></canvas>
+        </div>
+    
+        <!-- Aylık Başvuru -->
+        <div style="background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+          <h3>Aylık Başvuru</h3>
+          <label for="yilSecimi"><b>Yıl Seç:</b></label>
+          <select id="yilSecimi" style="margin-left: 10px; padding: 4px 8px;"></select>
+          <canvas id="basvuruChart" height="150"></canvas>
+        </div>
+    
+        <!-- Etkinlik Katılım -->
+        <div style="background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+          <h3>Etkinlik Katılım</h3>
+          <label for="etkinlikYilSecimi"><b>Yıl Seç:</b></label>
+          <select id="etkinlikYilSecimi" style="margin-left: 10px; padding: 4px 8px;"></select>
+          <canvas id="etkinlikChart" height="150"></canvas>
+        </div>
+    
+        <!-- Anket Katılım -->
+        <div style="background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+          <h3>Anket Katılım</h3>
+          <label for="anketYilSecimi"><b>Yıl Seç:</b></label>
+          <select id="anketYilSecimi" style="margin-left: 10px; padding: 4px 8px;"></select>
+          <canvas id="anketChart" height="150"></canvas>
+        </div>
+    
+        <!-- Kütüphane Kullanımı -->
+        <div style="background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); height: 300px;">
+          <h3>Kütüphane Kullanımı</h3>
+          <label for="kutuphaneYilSecimi"><b>Yıl Seç:</b></label>
+          <select id="kutuphaneYilSecimi" style="margin-left: 10px; padding: 4px 8px;"></select>
+          <canvas id="kutuphaneChart"></canvas>
+        </div>
+    
+      </div>
     </div>
-  </div>
+    
 
   <script src="../js/main.js"></script>
+  <script src="../js/admin/dashboard.js"></script> 
   <script>
     checkAuth();
   </script>

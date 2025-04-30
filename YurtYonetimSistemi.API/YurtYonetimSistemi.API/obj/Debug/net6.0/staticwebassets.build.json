@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "qbE5yh4YpN8ODHdsa0dTYh8DFgXSVvRz9KDkvU+EGGI=",
+  "Hash": "4gq9M95eOf+dr+f3Qm+joKWcoYPhM6L6yAvqjbKjj7E=",
   "Source": "YurtYonetimSistemi.API",
   "BasePath": "_content/YurtYonetimSistemi.API",
   "Mode": "Default",
@@ -100,6 +100,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\readme.txt"
+    },
+    {
+      "Identity": "C:\\Users\\hafiz\\source\\repos\\AkilliYurtSistemiProjesi\\YurtYonetimSistemi.API\\YurtYonetimSistemi.API\\wwwroot\\uploads\\yusuf_aktas_22739143742_AdliSicilBelgesi.png",
+      "SourceId": "YurtYonetimSistemi.API",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\hafiz\\source\\repos\\AkilliYurtSistemiProjesi\\YurtYonetimSistemi.API\\YurtYonetimSistemi.API\\wwwroot\\",
+      "BasePath": "_content/YurtYonetimSistemi.API",
+      "RelativePath": "uploads/yusuf_aktas_22739143742_AdliSicilBelgesi.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\yusuf_aktas_22739143742_AdliSicilBelgesi.png"
+    },
+    {
+      "Identity": "C:\\Users\\hafiz\\source\\repos\\AkilliYurtSistemiProjesi\\YurtYonetimSistemi.API\\YurtYonetimSistemi.API\\wwwroot\\uploads\\yusuf_aktas_22739143742_OgrenciBelgesi.pdf",
+      "SourceId": "YurtYonetimSistemi.API",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\hafiz\\source\\repos\\AkilliYurtSistemiProjesi\\YurtYonetimSistemi.API\\YurtYonetimSistemi.API\\wwwroot\\",
+      "BasePath": "_content/YurtYonetimSistemi.API",
+      "RelativePath": "uploads/yusuf_aktas_22739143742_OgrenciBelgesi.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\yusuf_aktas_22739143742_OgrenciBelgesi.pdf"
     }
   ]
 }
