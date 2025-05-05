@@ -9,9 +9,16 @@
   <script>
     const token = localStorage.getItem("token");
     if (!token) {
-      window.location.href = "index.html";
+      window.location.href = "../index.html";
     }
   </script>
+  <!-- Spinner Animasyonu -->
+<style>
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  </style>
 </head>
 <body>
   <div class="sidebar">
@@ -43,7 +50,19 @@
     <div class="content">
       <h2>Genel Bakış</h2>
       <p>Burada yurt sistemine dair özet bilgiler yer alacak.</p>
-    
+      <button onclick="genelAnalizYap()" class="add-btn">Genel AI Analizi Yap</button>
+      <div id="aiAnalizModal" class="modal" style="display:none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4);">
+        <div class="modal-content" style="background-color: #fefefe; margin: 10% auto; padding: 20px; border: 1px solid #888; width: 60%; border-radius: 10px; box-shadow: 0 5px 10px rgba(0,0,0,0.2);">
+          <span id="closeAiModal" style="color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer;">&times;</span>
+          <h2 style="margin-top: 0;">📊 AI Analiz Sonucu</h2>
+          <pre id="aiAnalizMesaji" style="white-space: pre-wrap; font-family: inherit;"></pre>
+        </div>
+      </div>
+     <!-- Yükleniyor Katmanı -->
+<div id="loadingOverlay" style="display: none; position: fixed; z-index: 999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.4); backdrop-filter: blur(1px); align-items: center; justify-content: center;">
+  <div style="border: 6px solid #f3f3f3; border-top: 6px solid #3498db; border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite;"></div>
+</div>
+
       <!-- 3x2 Grafik Grid Sistemi -->
       <div style="
         display: grid;
@@ -101,7 +120,8 @@
     
 
   <script src="../js/main.js"></script>
-  <script src="../js/admin/dashboard.js"></script> 
+  <script src="../js/admin/dashboard.js"></script>
+  <script src="../js/admin/aiPrediction.js"></script>  
   <script>
     checkAuth();
   </script>

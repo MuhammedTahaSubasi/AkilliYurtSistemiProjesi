@@ -1,6 +1,22 @@
 {
   "Files": [
     {
+      "Id": "C:\\Users\\hafiz\\source\\repos\\AkilliYurtSistemiProjesi\\YurtYonetimSistemi.API\\YurtYonetimSistemi.API\\wwwroot\\uploads\\bahtiyar_subasi_123456985478_AdliSicilBelgesi.pdf",
+      "PackagePath": "staticwebassets\\uploads\\bahtiyar_subasi_123456985478_AdliSicilBelgesi.pdf"
+    },
+    {
+      "Id": "C:\\Users\\hafiz\\source\\repos\\AkilliYurtSistemiProjesi\\YurtYonetimSistemi.API\\YurtYonetimSistemi.API\\wwwroot\\uploads\\bahtiyar_subasi_123456985478_OgrenciBelgesi.pdf",
+      "PackagePath": "staticwebassets\\uploads\\bahtiyar_subasi_123456985478_OgrenciBelgesi.pdf"
+    },
+    {
+      "Id": "C:\\Users\\hafiz\\source\\repos\\AkilliYurtSistemiProjesi\\YurtYonetimSistemi.API\\YurtYonetimSistemi.API\\wwwroot\\uploads\\emircan_gulec_123456985478_AdliSicilBelgesi.png",
+      "PackagePath": "staticwebassets\\uploads\\emircan_gulec_123456985478_AdliSicilBelgesi.png"
+    },
+    {
+      "Id": "C:\\Users\\hafiz\\source\\repos\\AkilliYurtSistemiProjesi\\YurtYonetimSistemi.API\\YurtYonetimSistemi.API\\wwwroot\\uploads\\emircan_gulec_123456985478_OgrenciBelgesi.pdf",
+      "PackagePath": "staticwebassets\\uploads\\emircan_gulec_123456985478_OgrenciBelgesi.pdf"
+    },
+    {
       "Id": "C:\\Users\\hafiz\\source\\repos\\AkilliYurtSistemiProjesi\\YurtYonetimSistemi.API\\YurtYonetimSistemi.API\\wwwroot\\uploads\\kazim__karabekir_12569874589_AdliSicilBelgesi.JPG",
       "PackagePath": "staticwebassets\\uploads\\kazim__karabekir_12569874589_AdliSicilBelgesi.JPG"
     },
@@ -9,16 +25,32 @@
       "PackagePath": "staticwebassets\\uploads\\kazim__karabekir_12569874589_OgrenciBelgesi.JPG"
     },
     {
-      "Id": "C:\\Users\\hafiz\\source\\repos\\AkilliYurtSistemiProjesi\\YurtYonetimSistemi.API\\YurtYonetimSistemi.API\\wwwroot\\uploads\\mustafa_kemal_Ataturk_123456985478_AdliSicilBelgesi.pdf",
-      "PackagePath": "staticwebassets\\uploads\\mustafa_kemal_Ataturk_123456985478_AdliSicilBelgesi.pdf"
+      "Id": "C:\\Users\\hafiz\\source\\repos\\AkilliYurtSistemiProjesi\\YurtYonetimSistemi.API\\YurtYonetimSistemi.API\\wwwroot\\uploads\\mehmed_ozceler_44589657895_AdliSicilBelgesi.pdf",
+      "PackagePath": "staticwebassets\\uploads\\mehmed_ozceler_44589657895_AdliSicilBelgesi.pdf"
     },
     {
-      "Id": "C:\\Users\\hafiz\\source\\repos\\AkilliYurtSistemiProjesi\\YurtYonetimSistemi.API\\YurtYonetimSistemi.API\\wwwroot\\uploads\\mustafa_kemal_Ataturk_123456985478_OgrenciBelgesi.pdf",
-      "PackagePath": "staticwebassets\\uploads\\mustafa_kemal_Ataturk_123456985478_OgrenciBelgesi.pdf"
+      "Id": "C:\\Users\\hafiz\\source\\repos\\AkilliYurtSistemiProjesi\\YurtYonetimSistemi.API\\YurtYonetimSistemi.API\\wwwroot\\uploads\\mehmed_ozceler_44589657895_OgrenciBelgesi.pdf",
+      "PackagePath": "staticwebassets\\uploads\\mehmed_ozceler_44589657895_OgrenciBelgesi.pdf"
+    },
+    {
+      "Id": "C:\\Users\\hafiz\\source\\repos\\AkilliYurtSistemiProjesi\\YurtYonetimSistemi.API\\YurtYonetimSistemi.API\\wwwroot\\uploads\\muhammet__aksoy_12356897_AdliSicilBelgesi.pdf",
+      "PackagePath": "staticwebassets\\uploads\\muhammet__aksoy_12356897_AdliSicilBelgesi.pdf"
+    },
+    {
+      "Id": "C:\\Users\\hafiz\\source\\repos\\AkilliYurtSistemiProjesi\\YurtYonetimSistemi.API\\YurtYonetimSistemi.API\\wwwroot\\uploads\\muhammet__aksoy_12356897_OgrenciBelgesi.pdf",
+      "PackagePath": "staticwebassets\\uploads\\muhammet__aksoy_12356897_OgrenciBelgesi.pdf"
     },
     {
       "Id": "C:\\Users\\hafiz\\source\\repos\\AkilliYurtSistemiProjesi\\YurtYonetimSistemi.API\\YurtYonetimSistemi.API\\wwwroot\\uploads\\readme.txt",
       "PackagePath": "staticwebassets\\uploads\\readme.txt"
+    },
+    {
+      "Id": "C:\\Users\\hafiz\\source\\repos\\AkilliYurtSistemiProjesi\\YurtYonetimSistemi.API\\YurtYonetimSistemi.API\\wwwroot\\uploads\\tarkan_tevetoglu_44589657895_AdliSicilBelgesi.pdf",
+      "PackagePath": "staticwebassets\\uploads\\tarkan_tevetoglu_44589657895_AdliSicilBelgesi.pdf"
+    },
+    {
+      "Id": "C:\\Users\\hafiz\\source\\repos\\AkilliYurtSistemiProjesi\\YurtYonetimSistemi.API\\YurtYonetimSistemi.API\\wwwroot\\uploads\\tarkan_tevetoglu_44589657895_OgrenciBelgesi.png",
+      "PackagePath": "staticwebassets\\uploads\\tarkan_tevetoglu_44589657895_OgrenciBelgesi.png"
     },
     {
       "Id": "C:\\Users\\hafiz\\source\\repos\\AkilliYurtSistemiProjesi\\YurtYonetimSistemi.API\\YurtYonetimSistemi.API\\wwwroot\\uploads\\yusuf_aktas_22739143742_AdliSicilBelgesi.png",

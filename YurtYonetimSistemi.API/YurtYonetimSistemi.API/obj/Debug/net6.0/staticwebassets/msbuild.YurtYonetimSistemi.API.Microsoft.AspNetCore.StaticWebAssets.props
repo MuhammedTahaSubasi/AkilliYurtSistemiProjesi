@@ -1,5 +1,69 @@
 ﻿<Project>
   <ItemGroup>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\bahtiyar_subasi_123456985478_AdliSicilBelgesi.pdf))">
+      <SourceType>Package</SourceType>
+      <SourceId>YurtYonetimSistemi.API</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/YurtYonetimSistemi.API</BasePath>
+      <RelativePath>uploads/bahtiyar_subasi_123456985478_AdliSicilBelgesi.pdf</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\bahtiyar_subasi_123456985478_AdliSicilBelgesi.pdf))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\bahtiyar_subasi_123456985478_OgrenciBelgesi.pdf))">
+      <SourceType>Package</SourceType>
+      <SourceId>YurtYonetimSistemi.API</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/YurtYonetimSistemi.API</BasePath>
+      <RelativePath>uploads/bahtiyar_subasi_123456985478_OgrenciBelgesi.pdf</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\bahtiyar_subasi_123456985478_OgrenciBelgesi.pdf))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\emircan_gulec_123456985478_AdliSicilBelgesi.png))">
+      <SourceType>Package</SourceType>
+      <SourceId>YurtYonetimSistemi.API</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/YurtYonetimSistemi.API</BasePath>
+      <RelativePath>uploads/emircan_gulec_123456985478_AdliSicilBelgesi.png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\emircan_gulec_123456985478_AdliSicilBelgesi.png))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\emircan_gulec_123456985478_OgrenciBelgesi.pdf))">
+      <SourceType>Package</SourceType>
+      <SourceId>YurtYonetimSistemi.API</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/YurtYonetimSistemi.API</BasePath>
+      <RelativePath>uploads/emircan_gulec_123456985478_OgrenciBelgesi.pdf</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\emircan_gulec_123456985478_OgrenciBelgesi.pdf))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\kazim__karabekir_12569874589_AdliSicilBelgesi.JPG))">
       <SourceType>Package</SourceType>
       <SourceId>YurtYonetimSistemi.API</SourceId>
@@ -32,12 +96,12 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\kazim__karabekir_12569874589_OgrenciBelgesi.JPG))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\mustafa_kemal_Ataturk_123456985478_AdliSicilBelgesi.pdf))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\mehmed_ozceler_44589657895_AdliSicilBelgesi.pdf))">
       <SourceType>Package</SourceType>
       <SourceId>YurtYonetimSistemi.API</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/YurtYonetimSistemi.API</BasePath>
-      <RelativePath>uploads/mustafa_kemal_Ataturk_123456985478_AdliSicilBelgesi.pdf</RelativePath>
+      <RelativePath>uploads/mehmed_ozceler_44589657895_AdliSicilBelgesi.pdf</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -46,14 +110,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\mustafa_kemal_Ataturk_123456985478_AdliSicilBelgesi.pdf))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\mehmed_ozceler_44589657895_AdliSicilBelgesi.pdf))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\mustafa_kemal_Ataturk_123456985478_OgrenciBelgesi.pdf))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\mehmed_ozceler_44589657895_OgrenciBelgesi.pdf))">
       <SourceType>Package</SourceType>
       <SourceId>YurtYonetimSistemi.API</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/YurtYonetimSistemi.API</BasePath>
-      <RelativePath>uploads/mustafa_kemal_Ataturk_123456985478_OgrenciBelgesi.pdf</RelativePath>
+      <RelativePath>uploads/mehmed_ozceler_44589657895_OgrenciBelgesi.pdf</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -62,7 +126,39 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\mustafa_kemal_Ataturk_123456985478_OgrenciBelgesi.pdf))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\mehmed_ozceler_44589657895_OgrenciBelgesi.pdf))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\muhammet__aksoy_12356897_AdliSicilBelgesi.pdf))">
+      <SourceType>Package</SourceType>
+      <SourceId>YurtYonetimSistemi.API</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/YurtYonetimSistemi.API</BasePath>
+      <RelativePath>uploads/muhammet__aksoy_12356897_AdliSicilBelgesi.pdf</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\muhammet__aksoy_12356897_AdliSicilBelgesi.pdf))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\muhammet__aksoy_12356897_OgrenciBelgesi.pdf))">
+      <SourceType>Package</SourceType>
+      <SourceId>YurtYonetimSistemi.API</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/YurtYonetimSistemi.API</BasePath>
+      <RelativePath>uploads/muhammet__aksoy_12356897_OgrenciBelgesi.pdf</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\muhammet__aksoy_12356897_OgrenciBelgesi.pdf))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\readme.txt))">
       <SourceType>Package</SourceType>
@@ -79,6 +175,38 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\readme.txt))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\tarkan_tevetoglu_44589657895_AdliSicilBelgesi.pdf))">
+      <SourceType>Package</SourceType>
+      <SourceId>YurtYonetimSistemi.API</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/YurtYonetimSistemi.API</BasePath>
+      <RelativePath>uploads/tarkan_tevetoglu_44589657895_AdliSicilBelgesi.pdf</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\tarkan_tevetoglu_44589657895_AdliSicilBelgesi.pdf))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\tarkan_tevetoglu_44589657895_OgrenciBelgesi.png))">
+      <SourceType>Package</SourceType>
+      <SourceId>YurtYonetimSistemi.API</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/YurtYonetimSistemi.API</BasePath>
+      <RelativePath>uploads/tarkan_tevetoglu_44589657895_OgrenciBelgesi.png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\tarkan_tevetoglu_44589657895_OgrenciBelgesi.png))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\uploads\yusuf_aktas_22739143742_AdliSicilBelgesi.png))">
       <SourceType>Package</SourceType>
