@@ -25,16 +25,46 @@ namespace YurtYonetimSistemi.API.Controllers
 
         // GET: api/GirisCikis
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<GirisCikis>>> GetGirisCikislar()
+        public async Task<ActionResult<IEnumerable<object>>> GetGirisCikislar([FromQuery] DateTime? date, [FromQuery] string? search)
         {
             if (_context.GirisCikislar == null)
             {
                 return NotFound();
             }
-            return await _context.GirisCikislar
-                .Include(gc => gc.Kullanici) // kullanıcı bilgisiyle birlikte getir
+
+            var query = _context.GirisCikislar
+                .Include(gc => gc.Kullanici)
+                .AsQueryable();
+
+            if (date != null)
+            {
+                var selectedDate = date.Value.Date;
+                query = query.Where(gc => gc.ZamanDamgasi.Date == selectedDate);
+            }
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                query = query.Where(gc =>
+                    gc.Kullanici.Ad.Contains(search) ||
+                    gc.Kullanici.Soyad.Contains(search) ||
+                    gc.Kullanici.TcNo.Contains(search)
+                );
+            }
+
+            var result = await query
+                .OrderByDescending(gc => gc.ZamanDamgasi)
+                .Select(gc => new
+                {
+                    AdSoyad = gc.Kullanici.Ad + " " + gc.Kullanici.Soyad,
+                    TcNo = gc.Kullanici.TcNo,
+                    Zaman = gc.ZamanDamgasi.ToString("yyyy-MM-dd HH:mm"),
+                    GirisMi = gc.GirisMi
+                })
                 .ToListAsync();
+
+            return Ok(result);
         }
+
 
         // GET: api/GirisCikis/5
         [HttpGet("{id}")]
@@ -56,62 +86,41 @@ namespace YurtYonetimSistemi.API.Controllers
             return girisCikis;
         }
 
-        // PUT: api/GirisCikis/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutGirisCikis(Guid id, GirisCikis girisCikis)
+        // POST: api/GirisCikis/kaydet
+        [AllowAnonymous]
+        [HttpPost("kaydet")]
+        public async Task<IActionResult> KaydetFromUID([FromBody] UIDDto data)
         {
-            if (id != girisCikis.GirisCikisID)
-            {
-                return BadRequest();
-            }
+            if (string.IsNullOrEmpty(data.Uid))
+                return BadRequest("UID boş olamaz.");
 
-            _context.Entry(girisCikis).State = EntityState.Modified;
+            var kullanici = await _context.Kullanicilar
+                .FirstOrDefaultAsync(k => k.KartUID == data.Uid);
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!GirisCikisExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            if (kullanici == null)
+                return NotFound("Kullanıcı bulunamadı.");
 
-            return NoContent();
-        }
-
-        // POST: api/GirisCikis
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<GirisCikis>> PostGirisCikis(GirisCikis girisCikis)
-        {
-            if (_context.GirisCikislar == null)
-            {
-                return Problem("Entity set 'AppDbContext.GirisCikislar'  is null.");
-            }
-
-            // kullanıcının son kaydını bul
             var sonKayit = await _context.GirisCikislar
-                .Where(g => g.KullaniciID == girisCikis.KullaniciID)
+                .Where(g => g.KullaniciID == kullanici.KullaniciID)
                 .OrderByDescending(g => g.ZamanDamgasi)
                 .FirstOrDefaultAsync();
 
-            // Eğer daha önce hiç kayıt yoksa veya en son çıkış yapmışsa → GİRİŞ
-            // Eğer en son giriş yapmışsa → ÇIKIŞ
-            girisCikis.GirisMi = (sonKayit == null || !sonKayit.GirisMi);
+            var yeniKayit = new GirisCikis
+            {
+                KullaniciID = kullanici.KullaniciID,
+                GirisMi = (sonKayit == null || !sonKayit.GirisMi),
+                ZamanDamgasi = DateTime.Now
+            };
 
-            girisCikis.ZamanDamgasi = DateTime.Now;
-            _context.GirisCikislar.Add(girisCikis);
+            _context.GirisCikislar.Add(yeniKayit);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetGirisCikis", new { id = girisCikis.GirisCikisID }, girisCikis);
+            return Ok(new
+            {
+                Mesaj = yeniKayit.GirisMi ? "Giriş kaydedildi" : "Çıkış kaydedildi",
+                Tarih = yeniKayit.ZamanDamgasi,
+                Kullanici = $"{kullanici.Ad} {kullanici.Soyad}"
+            });
         }
 
         // DELETE: api/GirisCikis/5
@@ -138,5 +147,29 @@ namespace YurtYonetimSistemi.API.Controllers
         {
             return (_context.GirisCikislar?.Any(e => e.GirisCikisID == id)).GetValueOrDefault();
         }
+        //GET api/girisCikis/durum
+        [AllowAnonymous]
+        [HttpGet("durum")]
+        public async Task<IActionResult> GetSonDurumlar()
+        {
+            var sonDurumlar = await _context.Kullanicilar
+                .Where(k => k.Rol!.RolAd == "Öğrenci")
+                .Select(kullanici => new
+                {
+                    AdSoyad = kullanici.Ad + " " + kullanici.Soyad,
+                    Oda = kullanici.Oda != null ? kullanici.Oda.OdaNo : "-",
+                    GirisMi = kullanici.KartUID != null
+                        ? _context.GirisCikislar
+                            .Where(gc => gc.KullaniciID == kullanici.KullaniciID)
+                            .OrderByDescending(gc => gc.ZamanDamgasi)
+                            .Select(gc => gc.GirisMi)
+                            .FirstOrDefault()
+                        : false // kart yoksa dışarıda say
+                })
+                .ToListAsync();
+
+            return Ok(sonDurumlar);
+        }
+
     }
 }

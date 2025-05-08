@@ -1,3 +1,57 @@
+//GİRİŞ ÇIKIŞ SAYISI 
+function verileriYukle() {
+  fetch("https://localhost:7107/api/girisCikis/durum")
+    .then(res => res.json())
+    .then(data => {
+      const iceride = data.filter(x => x.girisMi);
+      const disarida = data.filter(x => !x.girisMi);
+
+      document.getElementById("count-iceride").innerText = iceride.length;
+      document.getElementById("count-disarida").innerText = disarida.length;
+
+      // Modal açıksa ve açık liste buysa tekrar güncelle
+      const modal = document.getElementById("listeModal");
+      const baslik = document.getElementById("liste-baslik").innerText;
+
+      if (modal.style.display === "block") {
+        if (baslik.includes("Yurtta")) {
+          gosterListe("Yurtta Olanlar", iceride);
+        } else if (baslik.includes("Dışarıda")) {
+          gosterListe("Dışarıda Olanlar", disarida);
+        }
+      }
+      // Butonlara tekrar bağla 
+      document.getElementById("btn-iceride").onclick = () => {
+        gosterListe("Yurtta Olanlar", iceride);
+      };
+      document.getElementById("btn-disarida").onclick = () => {
+        gosterListe("Dışarıda Olanlar", disarida);
+      };
+    });
+}
+
+// İlk yükleme
+verileriYukle();
+// Her 5 saniyede bir güncelle
+setInterval(verileriYukle, 5000);
+
+function gosterListe(baslik, liste) {
+  document.getElementById("listeModal").style.display = "block";
+  document.getElementById("liste-baslik").innerText = baslik;
+
+  const ul = document.getElementById("liste");
+  ul.innerHTML = "";
+  liste.forEach(ogr => {
+    const li = document.createElement("li");
+    li.innerText = ogr.adSoyad + "-" + ogr.oda; 
+    ul.appendChild(li);
+  });
+}
+
+function kapatListeModal() {
+  document.getElementById("listeModal").style.display = "none";
+}
+
 // ÖĞRENCİ SAYISI
 async function fetchOgrenciSayisi() {
     const token = localStorage.getItem("token");

@@ -26,7 +26,6 @@
     <ul>
       <li><a href="Dashboard.html" class="active">Dashboard</a></li>
       <li><a href="Students.html">Öğrenciler</a></li>
-      <li><a href="Transactions.html">İşlemler</a></li>
       <li><a href="Surveys.html">Anketler</a></li>
       <li><a href="maintenance-requests.html">Bakım Talepleri</a></li>
       <li><a href="Events.html">Etkinlikler</a></li>
@@ -37,6 +36,7 @@
       <li><a href="library.html">Kütüphane</a></li>
       <li><a href="payments.html">Ödeme Takibi</a></li>
       <li><a href="applications.html">Başvurular</a></li> 
+      <li><a href="entryLogs.html">Giriş Çıkış Kayıtları</a></li>
       <li><a href="Settings.html">Ayarlar</a></li>
     </ul>
   </div>
@@ -49,16 +49,35 @@
 
     <div class="content">
       <h2>Genel Bakış</h2>
-      <p>Burada yurt sistemine dair özet bilgiler yer alacak.</p>
-      <button onclick="genelAnalizYap()" class="add-btn">Genel AI Analizi Yap</button>
-      <div id="aiAnalizModal" class="modal" style="display:none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4);">
-        <div class="modal-content" style="background-color: #fefefe; margin: 10% auto; padding: 20px; border: 1px solid #888; width: 60%; border-radius: 10px; box-shadow: 0 5px 10px rgba(0,0,0,0.2);">
-          <span id="closeAiModal" style="color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer;">&times;</span>
-          <h2 style="margin-top: 0;">📊 AI Analiz Sonucu</h2>
-          <pre id="aiAnalizMesaji" style="white-space: pre-wrap; font-family: inherit;"></pre>
-        </div>
-      </div>
-     <!-- Yükleniyor Katmanı -->
+      
+      <!-- Dashboard Kartları + AI Butonu -->
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 20px; margin-bottom: 20px;">
+  <div style="display: flex; gap: 20px;">
+    <button class="green-btn" id="btn-iceride"> Yurtta Olanlar: <span id="count-iceride">0</span></button>
+    <button class="red-btn" id="btn-disarida"> Dışarıda Olanlar: <span id="count-disarida">0</span></button>
+  </div>
+  <button onclick="genelAnalizYap()" class="orange-btn">🧠 Genel AI Analizi Yap</button>
+</div>
+
+<!-- Modal: Öğrenci Listesi -->
+<div id="listeModal" class="modal" style="display:none; position: fixed; z-index: 999; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.4);">
+  <div class="modal-content" style="background-color: white; margin: 10% auto; padding: 20px; border-radius: 8px; width: 50%;">
+    <span onclick="kapatListeModal()" style="float: right; font-size: 20px; cursor: pointer;">&times;</span>
+    <h3 id="liste-baslik" style="margin-top: 0;"></h3>
+    <ul id="liste" style="padding-left: 20px;"></ul>
+  </div>
+</div>
+
+<!-- Modal: AI Analiz -->
+<div id="aiAnalizModal" class="modal" style="display:none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4);">
+  <div class="modal-content" style="background-color: #fefefe; margin: 10% auto; padding: 20px; border: 1px solid #888; width: 60%; border-radius: 10px; box-shadow: 0 5px 10px rgba(0,0,0,0.2);">
+    <span id="closeAiModal" style="color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer;">&times;</span>
+    <h2 style="margin-top: 0;">📊 AI Analiz Sonucu</h2>
+    <pre id="aiAnalizMesaji" style="white-space: pre-wrap; font-family: inherit;"></pre>
+  </div>
+</div>
+
+<!-- Yükleniyor Katmanı -->
 <div id="loadingOverlay" style="display: none; position: fixed; z-index: 999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.4); backdrop-filter: blur(1px); align-items: center; justify-content: center;">
   <div style="border: 6px solid #f3f3f3; border-top: 6px solid #3498db; border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite;"></div>
 </div>

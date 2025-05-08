@@ -49,28 +49,31 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
     display: flex;
-    height: 100vh;
+    min-height: 100vh;
+    height: auto;
     background-color: #f3f4f6;
   }
-  
+ 
   .main-content {
     flex: 1;
+    padding: 20px;
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    background-color: #f3f4f6;
     box-sizing: border-box;
     overflow-y: auto;
   }
-  
-  
+   
   .sidebar {
     width: 220px;
     background-color: #2d89ef;
     color: white;
     padding: 20px;
-    height: 100vh; /* tam ekran boyu */
-  box-sizing: border-box;
+    box-sizing: border-box;
+    min-height: 100vh; 
+    flex-shrink: 0;
   }
+  
   
   .sidebar h2 {
     margin-top: 0;
@@ -88,14 +91,6 @@ body {
   .sidebar a {
     color: white;
     text-decoration: none;
-  }
-  
-  .main-content {
-    flex: 1;
-    background-color: #f3f4f6;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
   }
   
   .navbar {
@@ -162,7 +157,36 @@ body {
     cursor: pointer;
     margin-right: 5px;
   }
-  
+
+  .green-btn {
+    background-color: #28a745;
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+  .red-btn {
+    background-color: #dc3545;
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+  .orange-btn {
+    background-color: #ff7f00;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
   .detail-btn {
     background-color:#1b5fbd;
     color: white;
