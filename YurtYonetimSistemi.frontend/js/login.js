@@ -44,11 +44,18 @@ document.addEventListener("DOMContentLoaded", () => {
           localStorage.setItem("kullaniciId", user.kullaniciID); // ✅ Önemli kısım
       
           // 3. Yönlendirme
+          // 3. Rol bazlı yönlendirme
           if (data.role === "Öğrenci") {
             window.location.href = "student/StudentDashboard.html";
-          } else {
+          } else if (data.role === "Admin") {
             window.location.href = "admin/Dashboard.html";
+          } else if (data.role === "Personel") {
+            window.location.href = "admin/Settings.html"; 
+          } else {
+            alert("Yetkisiz rol. Giriş reddedildi.");
+            localStorage.clear();
           }
+
         })
         .catch(err => {
           console.error("Kullanıcı bilgileri alınamadı:", err);

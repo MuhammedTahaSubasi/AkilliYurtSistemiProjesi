@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     const today = new Date().toISOString().split("T")[0];
     document.getElementById("logTarih").value = today;
+   document.getElementById("logTarih").dispatchEvent(new Event("input"));
   });
   
   function filtreleEntryLogs() {

@@ -4,34 +4,16 @@
   <meta charset="UTF-8" />
   <title>Çamaşırhane Planım</title>
   <link rel="stylesheet" href="../css/style.css" />
-  <script>
-    const token = localStorage.getItem("token");
-    if (!token) {
-      window.location.href = "../index.html";
-    }
-  </script>
+<script src="../js/main.js"></script>
+<script>
+  checkAuth(["Öğrenci"]);
+</script>
 </head>
 <body>
-  <div class="sidebar">
-    <h2>Öğrenci Paneli</h2>
-    <ul>
-      <li><a href="StudentDashboard.html">🏠 Anasayfa</a></li>
-      <li><a href="surveyAnswers.html">📋 Anketler</a></li>
-      <li><a href="maintenanceRequestAnswer.html">🛠️ Bakım Talebi Oluştur</a></li>
-      <li><a href="eventAnswer.html">🎉 Etkinlik Katılımı</a></li>
-      <li><a href="cafeteriaAnswer.html">🍽️ Yemekhane Menüsü</a></li>
-      <li><a href="laundryAnswer.html" class="active">🧺 Çamaşırhane Planı</a></li>
-      <li><a href="libraryAnswer.html">📚 Kütüphane Katılım</a></li>
-      <li><a href="paymentAnswer.html">💳 Ödeme Takibim</a></li>
-      <li><a href="studentSettings.html">⚙️ Ayarlar</a></li> 
-    </ul>
-  </div>
+<div id="sidebar"></div>
 
   <div class="main-content">
-    <div class="navbar">
-      <h1>Çamaşırhane Planım</h1>
-      <button onclick="logout()">Çıkış Yap</button>
-    </div>
+  <div id="navbar"></div>
 
     <div class="content">
       <div class="table-header">
@@ -53,8 +35,8 @@
     </div>
   </div>
 
-  <script src="../js/main.js"></script>
   <script src="../js/student/laundryAnswer.js"></script>
-  <script>checkAuth();</script>
+  <script src="../js/student/studentSidebar.js"></script>
+  <script src="../js/student/studentNavbar.js"></script>
 </body>
 </html>

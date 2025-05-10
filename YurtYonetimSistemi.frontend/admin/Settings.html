@@ -5,39 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Ayarlar</title>
   <link rel="stylesheet" href="../css/style.css" />
-  <script>
-    const token = localStorage.getItem("token");
-    if (!token) {
-      window.location.href = "../index.html";
-    }
+ <script src="../js/main.js"></script>
+    <script>
+    checkAuth(["Admin","Personel"]);
   </script>
 </head>
 <body>
-  <div class="sidebar">
-    <h2>Yurt Paneli</h2>
-    <ul>
-      <li><a href="Dashboard.html">Dashboard</a></li>
-    <li><a href="Students.html">Öğrenciler</a></li>
-    <li><a href="Surveys.html">Anketler</a></li>
-    <li><a href="maintenance-requests.html">Bakım Talepleri</a></li>
-    <li><a href="Events.html">Etkinlikler</a></li>
-    <li><a href="Rooms.html">Odalar</a></li>
-    <li><a href="Classes.html">Sınıflar</a></li>
-    <li><a href="cafeteria.html">Yemekhane Menüsü</a></li>
-    <li><a href="laundry.html">Çamaşırhane Planı</a></li>
-    <li><a href="library.html">Kütüphane</a></li>
-    <li><a href="payments.html">Ödeme Takibi</a></li>
-    <li><a href="applications.html">Başvurular</a></li>
-    <li><a href="entryLogs.html">Giriş Çıkış Kayıtları</a></li>
-    <li><a href="Settings.html" class="active">Ayarlar</a></li> 
-    </ul>
-  </div>
+<div id="sidebar"></div>
 
   <div class="main-content">
-    <div class="navbar">
-      <h1>Ayarlar</h1>
-      <button>Çıkış Yap</button>
-    </div>
+    <div id="navbar"></div>
 
     <div class="content">
       <!--  Kullanıcı Bilgileri -->
@@ -73,10 +50,8 @@
     </div>
   </div>
 
-  <script src="../js/main.js"></script>
   <script src="../js/admin/settings.js"></script> 
-  <script>
-    checkAuth();
-  </script>
+  <script src="../js/admin/sidebar.js"></script>  
+  <script src="../js/admin/navbar.js"></script>
 </body>
 </html>

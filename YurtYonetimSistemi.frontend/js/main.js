@@ -1,24 +1,22 @@
-document.addEventListener("DOMContentLoaded", () => {
-  // GÜVENLİK KONTROLÜ
-  checkAuth();
-
-  // DETAY MODALI KAPATMA
-  const closeBtn = document.getElementById("closeDetailModal");
-  if (closeBtn) {
-    closeBtn.onclick = () => {
-      document.getElementById("studentDetailModal").style.display = "none";
-    };
-  }
-});
-
-// FONKSİYONLAR AŞAĞIDA KALSIN — çağrılar yukarıda yapılıyor
-function checkAuth() {
+// GÜVENLİK KONTROLÜ – ROL BAZLI
+function checkAuth(expectedRoles = []) {
   const token = localStorage.getItem("token");
+  const role = localStorage.getItem("role");
+
+  // Token yoksa giriş sayfasına yönlendir
   if (!token) {
     window.location.href = "../index.html";
     return;
   }
 
+  // Rol varsa ve erişim listesinde değilse engelle
+  if (expectedRoles.length > 0 && !expectedRoles.includes(role)) {
+    alert("Bu sayfaya erişim yetkiniz yok.");
+    window.location.href = "../index.html";
+    return;
+  }
+
+  // Token geçerli mi diye API'den doğrula (isteğe bağlı)
   fetch("https://localhost:7107/api/Kullanici/me", {
     method: "GET",
     headers: {
@@ -29,16 +27,16 @@ function checkAuth() {
       if (!res.ok) throw new Error("Token geçersiz");
       return res.json();
     })
-    .then(kullanici => {
-      console.log("Giriş yapan kullanıcı:", kullanici);
+    .then(user => {
+      console.log("Doğrulanan kullanıcı:", user);
     })
     .catch(() => {
-      localStorage.removeItem("token");
-      localStorage.removeItem("role");
+      localStorage.clear();
       window.location.href = "../index.html";
     });
 }
 
+// ÖĞRENCİ DETAY MODALI – İsteğe bağlı olarak kullanılabilir
 function showDetails(id, adSoyad, tcNo, oda, sinif, telefon) {
   document.getElementById("detailName").textContent = adSoyad;
   document.getElementById("detailNumber").textContent = tcNo;
@@ -47,13 +45,22 @@ function showDetails(id, adSoyad, tcNo, oda, sinif, telefon) {
   document.getElementById("detailClass").textContent = sinif;
   document.getElementById("studentDetailModal").style.display = "flex";
 }
-//cikis butonu 
+
+// MODAL VE ÇIKIŞ OLAYLARI – sadece ilgili sayfalarda aktifleşir
 document.addEventListener("DOMContentLoaded", () => {
+  // Detay modal kapatma
+  const closeBtn = document.getElementById("closeDetailModal");
+  if (closeBtn) {
+    closeBtn.onclick = () => {
+      document.getElementById("studentDetailModal").style.display = "none";
+    };
+  }
+
+  // Navbar'daki çıkış butonu
   const logoutBtn = document.querySelector(".navbar button");
   if (logoutBtn) {
     logoutBtn.addEventListener("click", () => {
-      localStorage.removeItem("token");
-      localStorage.removeItem("role");
+      localStorage.clear();
       window.location.href = "../index.html";
     });
   }
