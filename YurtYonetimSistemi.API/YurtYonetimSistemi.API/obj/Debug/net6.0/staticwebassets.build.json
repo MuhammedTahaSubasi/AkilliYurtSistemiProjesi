@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "oJL6Q5iqsu56+DhlOSLso/OguXFVa7Nv3u3dFrcPFOc=",
+  "Hash": "Of/vOn5aeIyBG27rqROHKWA6LgCU+9t+gHLT2ux1mrI=",
   "Source": "YurtYonetimSistemi.API",
   "BasePath": "_content/YurtYonetimSistemi.API",
   "Mode": "Default",
@@ -16,6 +16,40 @@
     }
   ],
   "Assets": [
+    {
+      "Identity": "C:\\Users\\hafiz\\source\\repos\\AkilliYurtSistemiProjesi\\YurtYonetimSistemi.API\\YurtYonetimSistemi.API\\wwwroot\\uploads\\ahmet_seker_78954782635_AdliSicilBelgesi.pdf",
+      "SourceId": "YurtYonetimSistemi.API",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\hafiz\\source\\repos\\AkilliYurtSistemiProjesi\\YurtYonetimSistemi.API\\YurtYonetimSistemi.API\\wwwroot\\",
+      "BasePath": "_content/YurtYonetimSistemi.API",
+      "RelativePath": "uploads/ahmet_seker_78954782635_AdliSicilBelgesi.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\ahmet_seker_78954782635_AdliSicilBelgesi.pdf"
+    },
+    {
+      "Identity": "C:\\Users\\hafiz\\source\\repos\\AkilliYurtSistemiProjesi\\YurtYonetimSistemi.API\\YurtYonetimSistemi.API\\wwwroot\\uploads\\ahmet_seker_78954782635_OgrenciBelgesi.png",
+      "SourceId": "YurtYonetimSistemi.API",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\hafiz\\source\\repos\\AkilliYurtSistemiProjesi\\YurtYonetimSistemi.API\\YurtYonetimSistemi.API\\wwwroot\\",
+      "BasePath": "_content/YurtYonetimSistemi.API",
+      "RelativePath": "uploads/ahmet_seker_78954782635_OgrenciBelgesi.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\ahmet_seker_78954782635_OgrenciBelgesi.png"
+    },
     {
       "Identity": "C:\\Users\\hafiz\\source\\repos\\AkilliYurtSistemiProjesi\\YurtYonetimSistemi.API\\YurtYonetimSistemi.API\\wwwroot\\uploads\\bahtiyar_subasi_123456985478_AdliSicilBelgesi.pdf",
       "SourceId": "YurtYonetimSistemi.API",

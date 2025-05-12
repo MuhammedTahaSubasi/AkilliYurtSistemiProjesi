@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Duyurular</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <script src="../js/main.js"></script>
+  <script>
+    checkAuth(["Admin"]);
+  </script>
+</head>
+<body>
+  <div id="sidebar"></div>
+
+  <div class="main-content">
+    <div id="navbar"></div>
+
+    <!-- 🆕 Yeni Duyuru Modal -->
+    <div class="modal" id="duyuruEkleModal">
+      <div class="modal-content">
+        <span class="close" id="closeEkleModal">&times;</span>
+        <h2>Yeni Duyuru Oluştur</h2>
+        <form id="announcementForm">
+          <label for="baslik">Başlık</label>
+          <input type="text" id="baslik" required style="margin-bottom: 10px;" />
+
+          <label for="mesaj">Mesaj</label>
+          <textarea id="mesaj" rows="4" style="margin-bottom: 10px;"></textarea>
+
+          <button type="submit" class="add-btn">Duyuru Oluştur</button>
+        </form>
+      </div>
+    </div>
+
+    <!--  Liste Başlığı + Filtre + Ekle Butonu -->
+    <div class="table-header">
+      <h2>Duyuru Listesi</h2>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <label for="duyuruFiltre">Filtrele:</label>
+        <select id="duyuruFiltre" onchange="listeleDuyurular()">
+          <option value="active">Aktif</option>
+          <option value="passive">Pasif</option>
+          <option value="all">Tümü</option>
+        </select>
+        <button class="add-btn" onclick="modalAc('duyuruEkleModal')">+ Yeni Duyuru</button>
+      </div>
+    </div>
+
+    <!--  Duyuru Tablosu -->
+    <table class="student-table">
+      <thead>
+        <tr>
+          <th>Başlık</th>
+          <th>Mesaj</th>
+          <th>Tarih</th>
+          <th>İşlem</th>
+        </tr>
+      </thead>
+      <tbody id="announcementListesi">
+        <!-- Dinamik olarak doldurulacak -->
+      </tbody>
+    </table>
+  </div>
+
+  <!--  Güncelleme Modal -->
+  <div class="modal" id="duyuruGuncelleModal">
+    <div class="modal-content">
+      <span class="close" id="closeGuncelleModal">&times;</span>
+      <h2>Duyuru Güncelle</h2>
+      <form id="announcementGuncelleForm">
+        <label for="guncelleBaslik">Başlık:</label>
+        <input type="text" id="guncelleBaslik" required />
+        <label for="guncelleMesaj">Mesaj:</label>
+        <textarea id="guncelleMesaj" rows="4" required></textarea>
+        <div class="checkbox-row">
+          <label for="guncelleAktifMi">Aktif mi?</label>
+          <input type="checkbox" id="guncelleAktifMi" />
+        </div>
+        <button type="submit" style="margin-top: 15px;">Güncelle</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scriptler -->
+  <script src="../js/admin/announcements.js"></script>
+  <script src="../js/admin/sidebar.js"></script>
+  <script src="../js/admin/navbar.js"></script>
+</body>
+</html>

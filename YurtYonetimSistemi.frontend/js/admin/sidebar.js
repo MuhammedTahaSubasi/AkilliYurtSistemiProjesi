@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <li><a href="Classes.html">🏫 Sınıflar</a></li>
       <li><a href="payments.html">💳 Ödeme Takibi</a></li>
       <li><a href="applications.html">📝 Başvurular</a></li>
+      <li><a href="announcements.html">📢 Duyurular</a></li>
       <li><a href="entryLogs.html">🚪 Giriş Çıkış</a></li>
     `;
   }

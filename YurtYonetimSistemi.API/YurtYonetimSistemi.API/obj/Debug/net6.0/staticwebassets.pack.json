@@ -1,6 +1,14 @@
 {
   "Files": [
     {
+      "Id": "C:\\Users\\hafiz\\source\\repos\\AkilliYurtSistemiProjesi\\YurtYonetimSistemi.API\\YurtYonetimSistemi.API\\wwwroot\\uploads\\ahmet_seker_78954782635_AdliSicilBelgesi.pdf",
+      "PackagePath": "staticwebassets\\uploads\\ahmet_seker_78954782635_AdliSicilBelgesi.pdf"
+    },
+    {
+      "Id": "C:\\Users\\hafiz\\source\\repos\\AkilliYurtSistemiProjesi\\YurtYonetimSistemi.API\\YurtYonetimSistemi.API\\wwwroot\\uploads\\ahmet_seker_78954782635_OgrenciBelgesi.png",
+      "PackagePath": "staticwebassets\\uploads\\ahmet_seker_78954782635_OgrenciBelgesi.png"
+    },
+    {
       "Id": "C:\\Users\\hafiz\\source\\repos\\AkilliYurtSistemiProjesi\\YurtYonetimSistemi.API\\YurtYonetimSistemi.API\\wwwroot\\uploads\\bahtiyar_subasi_123456985478_AdliSicilBelgesi.pdf",
       "PackagePath": "staticwebassets\\uploads\\bahtiyar_subasi_123456985478_AdliSicilBelgesi.pdf"
     },
