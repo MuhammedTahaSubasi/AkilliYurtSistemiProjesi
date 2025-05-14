@@ -46,6 +46,16 @@ document.getElementById("basvuruForm").addEventListener("submit", function (e) {
         alert("Başvurunuz alınırken bir hata oluştu: " + err.message);
     });
 });
+document.addEventListener("DOMContentLoaded", () => {
+  const dateInput = document.getElementById("dogumTarihi");
+  if (dateInput) {
+    const today = new Date();
+    const minAge = 16;
+    const maxDate = new Date(today.getFullYear() - minAge, today.getMonth(), today.getDate());
+    const formattedDate = maxDate.toISOString().split("T")[0];
+    dateInput.max = formattedDate;
+  }
+});
 
 //sorgulama kodu gönder
 document.getElementById("sorgulaForm").addEventListener("submit", function (e) {

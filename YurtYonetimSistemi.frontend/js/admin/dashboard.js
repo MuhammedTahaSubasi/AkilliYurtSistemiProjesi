@@ -481,6 +481,7 @@ etkinlikYillariOlustur().then(secilenYil => {
         const puan = c.puan;
   
         if (!soru || !tarih || !puan) return;
+          if (!c.anket?.aktifMi) return; 
   
         const y = new Date(tarih).getFullYear();
         if (y != yil) return;
@@ -532,8 +533,8 @@ function cizAnketChart({ sorular, katilimlar, ortalamalar }) {
     data: {
       labels: sorular,
       datasets: [{
-        label: "Katılım Sayısı",
-        data: katilimlar,
+        label: "Ortalama Puan",
+        data: ortalamalar,
         backgroundColor: "#FFA500"
       }]
     },
@@ -543,12 +544,12 @@ function cizAnketChart({ sorular, katilimlar, ortalamalar }) {
         tooltip: {
           callbacks: {
             label: function (ctx) {
-              const index = ctx.dataIndex;
-              return [
-                `Katılım: ${ctx.raw}`,
-                `Ortalama Puan: ${ortalamalar[index]}`
-              ];
-            }
+            const index = ctx.dataIndex;
+            return [
+              `Ortalama Puan: ${ctx.raw}`,
+              `Katılım: ${katilimlar[index]} kişi`
+            ];
+          }
           }
         },
         legend: {
@@ -664,7 +665,8 @@ anketYillariOlustur().then(yil => {
       return {
         x: parseInt(ay),
         y: subeAd,
-        r: count + 3 // küçük olanlar da görünsün diye
+        r: Math.max(count, 3),
+        actualCount: count
       };
     });
   
@@ -713,7 +715,7 @@ function cizKutuphaneBubbleChart({ data, subeListesi }) {
       plugins: {
         tooltip: {
           callbacks: {
-            label: ctx => `Katılım: ${ctx.raw.r}`
+             label: ctx => `Katılım: ${ctx.raw.actualCount}`
           }
         }
       }

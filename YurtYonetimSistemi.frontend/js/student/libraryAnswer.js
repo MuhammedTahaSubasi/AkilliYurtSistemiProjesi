@@ -112,66 +112,94 @@ async function listelePlanlar() {
       tbody.appendChild(tr);
     }
   }
-  
-  
 
-// seansa katılma
+// Seansa katılma
 async function katil(planId) {
-    try {
-      // 1. Plan detayını çek (şubeID için)
-      const planRes = await fetch(`https://localhost:7107/api/KutuphanePlani/${planId}`, {
+  try {
+    // 1. Seçilen planı çek
+    const planRes = await fetch(`https://localhost:7107/api/KutuphanePlani/${planId}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+    if (!planRes.ok) throw new Error("Plan bilgisi alınamadı");
+    const plan = await planRes.json();
+    // 2. Kapasite kontrolü
+    const subeRes = await fetch(`https://localhost:7107/api/KutuphaneSubesi/${plan.kutuphaneSubeID}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+    if (!subeRes.ok) throw new Error("Kütüphane kapasitesi alınamadı");
+    const sube = await subeRes.json();
+    const kapasite = sube.kapasite;
+
+    const katilimRes = await fetch(`https://localhost:7107/api/KutuphaneKatilim/KutuphaneGore/${planId}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+    if (!katilimRes.ok) throw new Error("Katılım listesi alınamadı");
+    const katilanlar = await katilimRes.json();
+
+    if (katilanlar.length >= kapasite) {
+      alert(`Bu seans dolu. Maksimum kapasite (${kapasite}) dolmuş.`);
+      return;
+    }
+    // 3. Tüm katılımları çek (kendi katılımların için çakışma kontrolü)
+    const tumKatilimlarRes = await fetch("https://localhost:7107/api/KutuphaneKatilim", {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+    if (!tumKatilimlarRes.ok) throw new Error("Tüm katılımlar alınamadı");
+    const tumKatilimlar = await tumKatilimlarRes.json();
+
+    const kullanicininKatilimlari = tumKatilimlar.filter(k => k.kullaniciID === kullaniciId);
+
+    const secilenTarih = plan.tarih.split("T")[0];
+    const secilenSaat = plan.saatAraligi.trim();
+
+    for (const kat of kullanicininKatilimlari) {
+      const katPlanRes = await fetch(`https://localhost:7107/api/KutuphanePlani/${kat.kutuphanePlanID}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
-      if (!planRes.ok) throw new Error("Plan bilgisi alınamadı");
-      const plan = await planRes.json();
-  
-      // 2. Şube kapasitesini al
-      const subeRes = await fetch(`https://localhost:7107/api/KutuphaneSubesi/${plan.kutuphaneSubeID}`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
-      if (!subeRes.ok) throw new Error("Kütüphane kapasitesi alınamadı");
-      const sube = await subeRes.json();
-      const kapasite = sube.kapasite;
-  
-      // 3. O plana ait katılımcıları çek
-      const katilimRes = await fetch(`https://localhost:7107/api/KutuphaneKatilim/KutuphaneGore/${planId}`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
-      if (!katilimRes.ok) throw new Error("Katılım listesi alınamadı");
-      const katilanlar = await katilimRes.json();
-  
-      if (katilanlar.length >= kapasite) {
-        alert(`Bu seans dolu. Maksimum kapasite (${kapasite}) dolmuş.`);
+      const katPlan = await katPlanRes.json();
+
+      const katTarih = katPlan.tarih.split("T")[0];
+      const katSaat = katPlan.saatAraligi.trim();
+
+      if (
+        katTarih === secilenTarih &&
+        katSaat === secilenSaat &&
+        katPlan.kutuphaneSubeID !== plan.kutuphaneSubeID
+      ) {
+        alert("⚠️ Aynı gün ve saat aralığında başka bir kütüphane planına zaten katıldınız.");
         return;
       }
-  
-      // 4. Katılım kaydını oluştur
-      const res = await fetch("https://localhost:7107/api/KutuphaneKatilim", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-        body: JSON.stringify({ kullaniciID: kullaniciId, kutuphanePlanID: planId }),
-      });
-  
-      if (!res.ok) throw new Error("Katılım başarısız");
-      alert("Seansa başarıyla katıldınız!");
-      listelePlanlar();
-    } catch (err) {
-      console.error("Katılma hatası:", err);
-      alert("Bir hata oluştu: " + err.message);
     }
+    // 4. Katılım kaydı oluştur
+    const res = await fetch("https://localhost:7107/api/KutuphaneKatilim", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+      body: JSON.stringify({ kullaniciID: kullaniciId, kutuphanePlanID: planId }),
+    });
+
+    if (!res.ok) throw new Error("Katılım başarısız");
+    alert("Seansa başarıyla katıldınız!");
+    listelePlanlar();
+  } catch (err) {
+    console.error("Katılma hatası:", err);
+    alert("Bir hata oluştu: " + err.message);
   }
-  
-  
-//seansı iptal etme 
+}
+
+//Seansı iptal etme 
 function iptalEt(planId) {
     fetch(`https://localhost:7107/api/KutuphaneKatilim/${kullaniciId}/${planId}`, {
       method: "DELETE",
